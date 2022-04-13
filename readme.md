@@ -8,15 +8,15 @@ Table of contents
 -----------------
 
 1. [Features](#features)
-1. [Installation](#installation)
-1. [General settings](#general-settings)
-1. [Key bindings](#key-bindings)
-1. [Status line](#status-line)
-1. [Nested tmux sessions](#nested-tmux-sessions)
-1. [Copy mode](#copy-mode)
-1. [Clipboard integration](#clipboard-integration)
-1. [Themes and customization](#themes-and-customization)
-1. [iTerm2 and tmux integration](#iterm2-and-tmux-integration)
+2. [Installation](#installation)
+3. [General settings](#general-settings)
+4. [Key bindings](#key-bindings)
+5. [Status line](#status-line)
+6. [Nested tmux sessions](#nested-tmux-sessions)
+7. [Copy mode](#copy-mode)
+8. [Clipboard integration](#clipboard-integration)
+9. [Themes and customization](#themes-and-customization)
+10. [iTerm2 and tmux integration](#iterm2-and-tmux-integration)
 
 Features
 ---------
