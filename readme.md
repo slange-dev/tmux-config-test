@@ -77,6 +77,25 @@ Finally, you can jump into a new tmux session:
 $ tmux new
 ```
 
+Setup tmux with terminator
+--------------------------
+Note: xclip is needed to fix the mouse copy-paste issue.
+```bash
+$ sudo apt install terminator xclip
+```
+1. Right click on `Terminal Emulator` > `Edit Applicaiton`.
+2. Set `Command` as `terminator`.
+3. Launch `Terminal Emulator`, `terminator` should launch directly.
+
+![image](https://user-images.githubusercontent.com/19916930/135396378-4d3acdc9-5653-4402-b515-43d2c2ce51a6.png)
+
+### Auto launch tmux at terminal spawn
+1. Launch terminator (or Terminal Emulator if it auto launches terminator).
+2. Right click > `Prferences` > `Profiles` tab
+3. Under `default` profile, select sub-tab `Command`
+4. Set `Custom command` as `tmux`.
+
+![image](https://user-images.githubusercontent.com/19916930/135396261-198194fe-3133-4e73-b405-da76d9a42add.png)
 
 General settings
 ----------------
