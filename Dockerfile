@@ -38,7 +38,7 @@ RUN mkdir -p $HOME/.fonts $HOME/.config/fontconfig/conf.d \
 WORKDIR /root
 
 RUN git clone https://github.com/slange-dev/tmux-config-testings \
-  && ./tmux-config/-testings/install.sh \
+  && ./tmux-config-testings/install.sh \
   && rm -rf ./tmux-config-testings
 
 ENV TERM=xterm-256color
