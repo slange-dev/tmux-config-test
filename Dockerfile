@@ -1,7 +1,6 @@
-FROM debian:bullseye-slim
+FROM debian:11-slim
 
-RUN apt-get update  \
-  && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     fontconfig \
     git \
@@ -32,6 +31,8 @@ ENV LANG=en_US.UTF-8
 
 WORKDIR /root
 
+cd /root
+
 RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
   && wget -P /.fonts https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
   && wget -P /.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
@@ -43,5 +44,3 @@ RUN git clone https://github.com/slange-dev/tmux-config-testings \
   && rm -rf /tmux-config-testings
 
 ENV TERM=xterm-256color
-
-#ENTRYPOINT ["/bin/sh", "/tmux-config-testings/install.sh"]
