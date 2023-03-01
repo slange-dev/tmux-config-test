@@ -18,4 +18,4 @@ jobs:
           - name: Run the build process with Docker
             uses: addnab/docker-run-action@v3
             with:
-                image: asamoshkin/debian-tmux-config
+                image: Dockerfile # asamoshkin/debian-tmux-config
