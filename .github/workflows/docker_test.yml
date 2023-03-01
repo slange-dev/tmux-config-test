@@ -9,6 +9,7 @@ on:
     - cron: '36 22 * * 2'
     
 jobs:
-  runs:
-    using: 'docker'
-    image: 'Dockerfile'
+  steps:
+      runs:
+        using: 'docker'
+        image: 'Dockerfile'
