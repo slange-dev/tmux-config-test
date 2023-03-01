@@ -10,7 +10,7 @@ on:
     
 jobs:
     compile:
-        name: Compile tmux config
+        name: Compile and test tmux config
         runs-on: ubuntu-latest
         steps:
           - name: Check out the repo
