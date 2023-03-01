@@ -31,8 +31,6 @@ ENV LANG=en_US.UTF-8
 
 WORKDIR /root
 
-cd /root
-
 RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
   && wget -P /.fonts https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
   && wget -P /.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
