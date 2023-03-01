@@ -9,8 +9,6 @@ on:
     - cron: '36 22 * * 2'
     
 jobs:
-name: 'Hello World'
-#
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  runs:
+    using: 'docker'
+    image: 'Dockerfile'
