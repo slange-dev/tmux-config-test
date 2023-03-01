@@ -18,4 +18,4 @@ jobs:
           - name: Run the build process with Docker
             uses: addnab/docker-run-action@v3
             with:
-                image: /home/runner/work/tmux-config-testings/tmux-config-testings/docker-tmux-test
+                image: .Dockerfile
