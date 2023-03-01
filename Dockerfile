@@ -1,6 +1,7 @@
 FROM debian:11-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    bc \
     ca-certificates \
     fontconfig \
     git \
@@ -12,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make \
     procps \
     wget \
+    vlock \
   && wget -O - https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz | tar xzf - \
   && cd tmux-3.3a \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
