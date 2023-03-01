@@ -9,9 +9,10 @@ on:
     - cron: '36 22 * * 2'
     
 jobs:
+    runs-on: ubuntu-latest
     steps:
       # Docker Run Action
-        uses: mosteo-actions/docker-run@v1
+      - uses: mosteo-actions/docker-run@v1
         with:
           image: Dockerfile
          #command: uname -a
