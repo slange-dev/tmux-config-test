@@ -9,8 +9,11 @@ on:
     - cron: '36 22 * * 2'
     
 jobs:
-  steps:
-      uses:
-        runs:
-          using: 'docker'
-          image: 'Dockerfile'
+    compile:
+        name: Compile tmux config
+        runs-on: ubuntu-latest
+        steps:
+          - name: Run the build process with Docker
+            uses: addnab/docker-run-action@v3
+            with:
+                image: Dockerfile
