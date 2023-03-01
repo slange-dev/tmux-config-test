@@ -13,6 +13,8 @@ jobs:
         name: Compile tmux config
         runs-on: ubuntu-latest
         steps:
+          - name: Check out the repo
+            uses: actions/checkout@v3
           - name: Run the build process with Docker
             uses: addnab/docker-run-action@v3
             with:
