@@ -9,7 +9,7 @@ on:
   schedule:
     - cron: '36 22 * * 2'
     
-job:
+jobs:
    runs-on: ubuntu-latest
    steps:
    - uses: mosteo-actions/docker-run@v1
