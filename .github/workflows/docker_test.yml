@@ -8,11 +8,10 @@ on:
   schedule:
     - cron: '36 22 * * 2'
     
-job:
-    runs-on: ubuntu-latest
-    steps:
-      # Docker Run Action
-      - uses: mosteo-actions/docker-run@v1
-        with:
-          image: Dockerfile
-         #command: uname -a
+jobs:
+name: 'Hello World'
+description: 'Greet someone and record the time'
+#
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
