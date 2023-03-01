@@ -8,7 +8,7 @@ on:
   schedule:
     - cron: '36 22 * * 2'
     
-jobs:
+job:
     - name: Docker Run Job
     runs-on: ubuntu-latest
     steps:
