@@ -10,7 +10,6 @@ on:
     
 jobs:
 name: 'Hello World'
-description: 'Greet someone and record the time'
 #
 runs:
   using: 'docker'
