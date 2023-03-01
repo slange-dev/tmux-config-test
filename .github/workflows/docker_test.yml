@@ -1,4 +1,3 @@
---
 name: Docker Test Run
 on:
   push:
