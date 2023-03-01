@@ -11,7 +11,6 @@ on:
 jobs:
     steps:
       # Docker Run Action
-      - name: Docker Run Action
         uses: mosteo-actions/docker-run@v1
         with:
           image: Dockerfile
