@@ -10,6 +10,7 @@ on:
     
 jobs:
   steps:
-      runs:
-        using: 'docker'
-        image: 'Dockerfile'
+      uses:
+        runs:
+          using: 'docker'
+          image: 'Dockerfile'
