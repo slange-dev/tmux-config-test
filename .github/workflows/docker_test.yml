@@ -1,5 +1,5 @@
+--
 name: Docker Test Run
-
 on:
   push:
     branches: [ "master" ]
@@ -10,11 +10,13 @@ on:
     - cron: '36 22 * * 2'
     
 jobs:
-   runs-on: ubuntu-latest
-   steps:
-   - uses: mosteo-actions/docker-run@v1
-     with:
-       image: Dockerfile
-       #command: uname -a
-   # etc
-   
+    name: Docker Run Job
+    runs-on: ubuntu-latest
+    steps:
+      # Docker Run Action
+      - name: Docker Run Action
+        uses: mosteo-actions/docker-run@v1
+        with:
+          image: Dockerfile
+         #command: uname -a
+         
