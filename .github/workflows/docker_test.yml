@@ -9,7 +9,6 @@ on:
     - cron: '36 22 * * 2'
     
 jobs:
-    runs-on: ubuntu-latest
     steps:
       # Docker Run Action
       - name: Docker Run Action
