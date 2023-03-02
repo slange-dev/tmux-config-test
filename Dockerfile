@@ -1,5 +1,9 @@
 FROM debian:11-slim
 
+MAINTAINER slange-dev
+LABEL version="0.1"
+LABEL org.opencontainers.image.authors="slange-dev"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
     ca-certificates \
