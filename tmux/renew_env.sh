@@ -1,7 +1,22 @@
 #!/usr/bin/env bash
+##################################################################################
+# @Version       : 
+# @Author        : Sebastian Lange
+# @Contact       : slange-dev@
+# @License       : 
+# @ReadME        : 
+# @Copyright     : Copyright: (c) 2022 Sebastian Lange, Home Developments
+# @Created       : 
+# @File          : 
+# @Description   : 
+# @TODO          :
+# @Other         :
+# @Resource      :
+##################################################################################
 
 set -eu
 
+#
 pane_fmt="#{pane_id} #{pane_in_mode} #{pane_input_off} #{pane_dead} #{pane_current_command}"
 tmux list-panes -s -F "$pane_fmt" | awk '
   $2 == 0 && $3 == 0 && $4 == 0 && $5 ~ /(bash|zsh|ksh|fish)/ { print $1 }
