@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
+##################################################################################
+# @Version       : 
+# @Author        : Sebastian Lange
+# @Contact       : slange-dev@mail.ru
+# @License       : 
+# @ReadME        : 
+# @Copyright     : Copyright: (c) 2022 Sebastian Lange, Home Developments
+# @Created       : 
+# @File          : 
+# @Description   : 
+# @TODO          :
+# @Other         :
+# @Resource      : https://medium.com/hackernoon/tmux-in-practice-copy-text-from-remote-session-using-ssh-remote-tunnel-and-systemd-service-dd3c51bca1fa
+##################################################################################
 
 set -eu
 
@@ -22,15 +36,13 @@ elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
   copy_backend="xsel -i --clipboard"
 elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
   copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
-elif [ -n "${copy_backend_remote_tunnel_port-}" ] \
-    && (netstat -f inet -nl 2>/dev/null || netstat -4 -nl 2>/dev/null) \
-      | grep -q "[.:]$copy_backend_remote_tunnel_port"; then
+elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listening "( sport = $copy_backend_remote_tunnel_port )" | tail -n +2 | wc -l)" -eq 1 ]; then
   copy_backend="nc localhost $copy_backend_remote_tunnel_port"
 fi
 
 # if copy backend is resolved, copy and exit
 if [ -n "$copy_backend" ]; then
-  printf "%s" "$buf" | eval "$copy_backend"
+  printf "$buf" | eval "$copy_backend" 
   exit;
 fi
 
