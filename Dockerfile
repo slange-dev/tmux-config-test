@@ -43,9 +43,9 @@ RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
   && wget -P /.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
   && fc-cache -vf /.fonts/
 
-RUN git clone https://github.com/slange-dev/tmux-config-testings . \
-  && chmod +x /tmux-config-testings/install.sh \
-  && source /tmux-config-testings/install.sh \
-  && rm -rf /tmux-config-testings
+RUN git clone https://github.com/slange-dev/tmux-config-testings /root/tmux-config-testings \
+  && chmod +x /root/tmux-config-testings/install.sh \
+  && source /root/tmux-config-testings/install.sh \
+  && rm -rf /root/tmux-config-testings
 
 ENV TERM=xterm-256color
