@@ -2,11 +2,10 @@
 FROM debian:11-slim
 
 # Maintainer
-MAINTAINER slange-dev
-
-# Label
-LABEL version="0.1"
 LABEL org.opencontainers.image.authors="slange-dev"
+
+# Version
+LABEL version="0.1"
 
 # Install dependencies and build tmux
 RUN apt-get update && apt-get install -y --no-install-recommends \
