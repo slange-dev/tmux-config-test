@@ -53,11 +53,11 @@ RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
   && fc-cache -vf /.fonts/
 
 # Install tmux config from tmux testing repository
-RUN git clone https://github.com/slange-dev/tmux-config-testings.git /root/tmux-config-testings \
-  && chmod +x /root/tmux-config-testings/install.sh \
-  && source /root/tmux-config-testings/install.sh 
+RUN git clone https://github.com/slange-dev/tmux-config-testings.git /.tmux \
+  && chmod +x /.tmux/install.sh \
+  && source /.tmux/install.sh 
   #\
-  #&& rm -rf /root/tmux-config-testings
+  #&& rm -rf /.tmux
 
 # Set term env to 256 colors
 ENV TERM=xterm-256color
