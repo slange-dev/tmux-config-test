@@ -47,13 +47,13 @@ ENV LANG=en_US.UTF-8
 WORKDIR /root
 
 # Install Powerline symbols and fonts
-RUN mkdir -p ~/.fonts ~/.config/fontconfig/conf.d \
-  && wget -P ~/.fonts https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
+RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
+  && wget -P ~/.local/share/fonts/powerline https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
   && wget -P ~/.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
-  && fc-cache -vf ~/.fonts/
+  && fc-cache -vf ~/.local/share/fonts
 
 # Install tmux config from tmux testing repository
-RUN git clone https://github.com/slange-dev/tmux-config-testings.git ~/.tmux \
+RUN git clone https://github.com/slange-dev/tmux-config-testings ~/.tmux \
   && chmod +x ~/.tmux/install.sh \
   && source ~/.tmux/install.sh 
   #\
