@@ -1,3 +1,4 @@
+# Set the base image to Debian 11 slim
 FROM debian:11-slim
 
 # Maintainer
@@ -52,11 +53,11 @@ RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
   && fc-cache -vf /.fonts/
 
 # Install tmux config from tmux testing repository
-RUN cd /root \
-  && git clone https://github.com/slange-dev/tmux-config-testings \
+RUN git clone https://github.com/slange-dev/tmux-config-testings.git /root/tmux-config-testings \
   && chmod +x /root/tmux-config-testings/install.sh \
-  && source /root/tmux-config-testings/install.sh \
-  && rm -rf /root/tmux-config-testings
+  && source /root/tmux-config-testings/install.sh 
+  #\
+  #&& rm -rf /root/tmux-config-testings
 
 # Set term env to 256 colors
 ENV TERM=xterm-256color
