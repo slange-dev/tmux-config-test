@@ -47,17 +47,17 @@ ENV LANG=en_US.UTF-8
 WORKDIR /root
 
 # Install Powerline symbols and fonts
-RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
-  && wget -P /.fonts https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
-  && wget -P /.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
-  && fc-cache -vf /.fonts/
+RUN mkdir -p ~/.fonts ~/.config/fontconfig/conf.d \
+  && wget -P ~/.fonts https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
+  && wget -P ~/.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
+  && fc-cache -vf ~/.fonts/
 
 # Install tmux config from tmux testing repository
-RUN git clone https://github.com/slange-dev/tmux-config-testings.git /.tmux \
-  && chmod +x /.tmux/install.sh \
-  && source /.tmux/install.sh 
+RUN git clone https://github.com/slange-dev/tmux-config-testings.git ~/.tmux \
+  && chmod +x ~/.tmux/install.sh \
+  && source ~/.tmux/install.sh 
   #\
-  #&& rm -rf /.tmux
+  #&& rm -rf ~/.tmux
 
 # Set term env to 256 colors
 ENV TERM=xterm-256color
