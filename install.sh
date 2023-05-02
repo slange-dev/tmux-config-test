@@ -5,7 +5,7 @@ set -e
 set -u
 set -o pipefail
 
-#
+# Function to check if a app is installed
 is_app_installed() {
   type "$1" &>/dev/null
 }
@@ -14,7 +14,7 @@ is_app_installed() {
 REPODIR="$(cd "$(dirname "$0")"; pwd -P)"
 cd "$REPODIR";
 
-#
+# Check if tmux is installed
 if ! is_app_installed tmux; then
   echo -e "WARNING: \"tmux\" command is not found. Install it first\n"
   exit 1
@@ -28,7 +28,7 @@ if [ ! -e "~/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# Check if tmux config file exist, then backup config file
+# Check if tmux config file exist, then backup the file
 if [ -e "~/.tmux.conf" ]; then
   echo -e "Found existing .tmux.conf in your \$HOME directory. Will create a backup at $HOME/.tmux.conf.bak\n"
   
@@ -36,18 +36,16 @@ if [ -e "~/.tmux.conf" ]; then
   cp -f ~/.tmux.conf ~/.tmux.conf.bak 2>/dev/null || true
 fi
 
-# Copy tmux config
-#cp -a ./.tmux/. /root/.tmux/
-
-# Symlink tmux config
+# Symlink tmux config file
 ln -sf ~/.tmux/tmux.conf ~/.tmux.conf
 
-# Install TPM plugins.
-# TPM requires running tmux server, as soon as `tmux start-server` does not work
-# create dump __noop session in detached mode, and kill it when plugins are installed
+# Install TPM plugins
 echo -e "Install TPM plugins\n"
 
-#
+# TPM requires running tmux server,
+# as soon as `tmux start-server` does not work,
+# create dump __noop session in detached mode
+# and kill it when plugins are installed
 tmux new -d -s __noop >/dev/null 2>&1 || true 
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 ~/.tmux/plugins/tpm/bin/install_plugins || true
