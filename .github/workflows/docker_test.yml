@@ -16,6 +16,4 @@ jobs:
           - name: Check out the repo
             uses: actions/checkout@v3.3.0
           - name: Run the build process with Docker
-            uses: addnab/docker-run-action@v3
-            with:
-                image: Dockerfile # asamoshkin/debian-tmux-config
+            run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
