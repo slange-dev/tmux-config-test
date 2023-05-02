@@ -9,13 +9,13 @@ Tmux configuration, that supercharges your [tmux](https://tmux.github.io/) and b
 Table of contents
 -----------------
 
-1. [Features](  #features)
+1. [Features]( #features)
 2. [Installation]( #installation)
 3. [General settings](  #general-settings)
-4. [Key bindings]( #key-bindings)
+4. [Key bindings](  #key-bindings)
 5. [Status line]( #status-line)
 6. [Nested tmux sessions]( #nested-tmux-sessions)
-7. [Copy mode]( #copy-mode)
+7. [Copy mode](  #copy-mode)
 8. [Clipboard integration]( #clipboard-integration)
 9. [Themes and customization]( #themes-and-customization)
 10. [iTerm2 and tmux integration]( #iterm2-and-tmux-integration)
@@ -26,35 +26,35 @@ Features
 - "C-a" prefix instead of "C-b" (screen like)
 - support for nested tmux sessions
 - local vs remote specific session configuration
--  scroll and copy mode improvements
--  integration with OSX or Linux clipboard (works for local, remote, and local+remote nested session scenario)
+-   scroll and copy mode improvements
+-   integration with OSX or Linux clipboard (works for local, remote, and local+remote nested session scenario)
 - supercharged status line
 - renew tmux and shell environment (SSH_AUTH_SOCK, DISPLAY, SSH_TTY) when reattaching back to old session
--  prompt to rename window right after it's created
+-   prompt to rename window right after it's created
 - newly created windows and panes retain current working directory
 -  monitor windows for activity/silence
--  highlight focused pane
+-   highlight focused pane
 - merge current session with existing one (move all windows)
--  configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
+-   configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
 - integration with 3rd party plugins: [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar), [tmux-copycat](https://github.com/tmux-plugins/tmux-copycat), [tmux-open](https://github.com/tmux-plugins/tmux-open), [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
 
 **Status line widgets**:
 
--  CPU, memory usage, system load average metrics
+-   CPU, memory usage, system load average metrics
 - username and hostname, current date time
--  battery information in status line
+-   battery information in status line
 - visual indicator when you press `prefix`
 - visual indicator when you're in `Copy` mode
 - visual indicator when pane is zoomed
 - online/offline visual indicator
-- toggle visibility of status line
+-   toggle visibility of status line
 
 
 Installation
 -------------
 Prerequisites:
 - tmux >= "v2.4"
--  OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
+-   OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
 
 Personally, I use it on OSX 10.11.5 El Capitan through iTerm2.
 
@@ -69,7 +69,7 @@ $ ./tmux-config/install.sh
 
 `install.sh` script does following:
 - copies files to `~/.tmux` directory
--  symlink tmux config file at `~/.tmux.conf`, existing `~/.tmux.conf` will be backed up
+-   symlink tmux config file at `~/.tmux.conf`, existing `~/.tmux.conf` will be backed up
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) will be installed at default location `~/.tmux/plugins/tpm`, unless already presemt
 - required tmux plugins will be installed
 
