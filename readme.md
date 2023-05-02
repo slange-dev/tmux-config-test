@@ -30,12 +30,12 @@ Features
 -  integration with OSX or Linux clipboard (works for local, remote, and local+remote nested session scenario)
 - supercharged status line
 - renew tmux and shell environment (SSH_AUTH_SOCK, DISPLAY, SSH_TTY) when reattaching back to old session
-- prompt to rename window right after it's created
+-  prompt to rename window right after it's created
 - newly created windows and panes retain current working directory
-- monitor windows for activity/silence
+-  monitor windows for activity/silence
 -  highlight focused pane
 - merge current session with existing one (move all windows)
-- configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
+-  configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
 - integration with 3rd party plugins: [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar), [tmux-copycat](https://github.com/tmux-plugins/tmux-copycat), [tmux-open](https://github.com/tmux-plugins/tmux-open), [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
 
 **Status line widgets**:
