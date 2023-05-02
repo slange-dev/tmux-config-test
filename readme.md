@@ -9,9 +9,9 @@ Tmux configuration, that supercharges your [tmux](https://tmux.github.io/) and b
 Table of contents
 -----------------
 
-1. [Features](#features)
-2. [Installation](#installation)
-3. [General settings](#general-settings)
+1. [Features]( #features)
+2. [Installation]( #installation)
+3. [General settings]( #general-settings)
 4. [Key bindings](#key-bindings)
 5. [Status line](#status-line)
 6. [Nested tmux sessions](#nested-tmux-sessions)
