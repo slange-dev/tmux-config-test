@@ -44,7 +44,7 @@ ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
 # Set workdir
-WORKDIR /root
+#WORKDIR /root
 
 # Install Powerline symbols and fonts
 RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
