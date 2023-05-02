@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
   && locale-gen
+
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
@@ -42,7 +43,7 @@ RUN mkdir -p /.fonts $HOME/.config/fontconfig/conf.d \
   && wget -P /.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
   && fc-cache -vf /.fonts/
 
-RUN git clone https://github.com/slange-dev/tmux-config-testings \
+RUN git clone https://github.com/slange-dev/tmux-config-testings . \
   && chmod +x /tmux-config-testings/install.sh \
   && source /tmux-config-testings/install.sh \
   && rm -rf /tmux-config-testings
