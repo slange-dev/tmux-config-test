@@ -1,5 +1,8 @@
 Tmux Configuration
 =====================
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1fd62ab3012409eaff9102b4643ea50)](https://app.codacy.com/gh/slange-dev/tmux-config-testings?utm_source=github.com&utm_medium=referral&utm_content=slange-dev/tmux-config-testings&utm_campaign=Badge_Grade)
+
 Tmux configuration, that supercharges your [tmux](https://tmux.github.io/) and builds cozy and cool terminal environment.
 
 ![intro](https://user-images.githubusercontent.com/768858/33152741-ec5f1270-cfe6-11e7-9570-6d17330a83aa.gif)
