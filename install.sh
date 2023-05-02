@@ -21,7 +21,7 @@ if ! is_app_installed tmux; then
 fi
 
 # Check if tmux plugin manager is installed
-if [ ! -e "/root/.tmux/plugins/tpm" ]; then
+if [ ! -e "~/.tmux/plugins/tpm" ]; then
   echo -e "WARNING: Cannot found TPM (Tmux Plugin Manager) at default location: \$HOME/.tmux/plugins/tpm.\n"
 
   # Clone tmux plugin manager (tpm)
@@ -29,18 +29,18 @@ if [ ! -e "/root/.tmux/plugins/tpm" ]; then
 fi
 
 # Check if tmux config file exist, then backup config file
-if [ -e "/root/.tmux.conf" ]; then
+if [ -e "~/.tmux.conf" ]; then
   echo -e "Found existing .tmux.conf in your \$HOME directory. Will create a backup at $HOME/.tmux.conf.bak\n"
   
   # Backup tmux config file
-  cp -f /root/.tmux.conf /root/.tmux.conf.bak 2>/dev/null || true
+  cp -f ~/.tmux.conf ~/.tmux.conf.bak 2>/dev/null || true
 fi
 
 # Copy tmux config
 #cp -a ./.tmux/. /root/.tmux/
 
 # Symlink tmux config
-ln -sf /root/.tmux/tmux.conf /root/.tmux.conf
+ln -sf ~/.tmux/tmux.conf ~/.tmux.conf
 
 # Install TPM plugins.
 # TPM requires running tmux server, as soon as `tmux start-server` does not work
@@ -50,7 +50,7 @@ echo -e "Install TPM plugins\n"
 #
 tmux new -d -s __noop >/dev/null 2>&1 || true 
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
-/root/.tmux/plugins/tpm/bin/install_plugins || true
+~/.tmux/plugins/tpm/bin/install_plugins || true
 tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # Finish!
