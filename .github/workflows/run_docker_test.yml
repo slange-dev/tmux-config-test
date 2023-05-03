@@ -1,4 +1,4 @@
-name: Docker Test Run
+name: Tmux Docker test run
 on:
   push:
     branches: [ "master" ]
@@ -16,4 +16,4 @@ jobs:
           - name: Check out the repository
             uses: actions/checkout@v3.3.0
           - name: Run the build process with Docker
-            run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+            run: docker build . --file Dockerfile --tag tmux-config-testing:$(date +%s)
