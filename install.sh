@@ -37,7 +37,7 @@ if [ -e "~/.tmux.conf" ]; then
 fi
 
 # Symlink tmux config file
-ln -sf ~/.tmux/tmux.conf ~/.tmux.conf
+ln -sf ~/.tmux/tmux/tmux.conf ~/.tmux.conf
 
 # Install TPM plugins
 echo -e "Install TPM plugins\n"
