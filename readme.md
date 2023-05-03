@@ -308,7 +308,6 @@ If you are an iTerm2 user, third column describes the keybinding of similar  "ac
     </tr>
 </table>
 
-
 Status line
 -----------
 
@@ -364,7 +363,6 @@ Remote session is detected by existence of `$SSH_CLIENT` variable. When session 
 - some widgets are removed from status line: battery, date time. The idea is to economy width, so on wider screens you can open two remote tmux sessions in side-by-side panes of single window of local session.
 
 You can apply remote-specific settings by extending `~/.tmux/.tmux.remote.conf` file.
-
 
 Copy mode
 ----------------------
@@ -422,10 +420,6 @@ This tmux-config does its best to integrate with system clipboard, trying all so
 On OSX you might need to install `reattach-to-user-namespace` wrapper: `brew install reattach-to-user-namespace`, and make sure OSC 52 sequence handling is turned on in iTerm. (Preferences -> General -> Applications in Terminal may access clipboard).
 
 On Linux, make sure `xclip` or `xsel` is installed. For remote scenarios, you would still need to setup network listener and use SSH remote tunneling, unless you terminal emulators supports OSC 52 sequences.
-
-
-
-
 
 Themes and customization
 ------------------------
