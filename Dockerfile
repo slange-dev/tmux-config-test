@@ -1,5 +1,5 @@
 # Set the base image to Debian 11 slim
-FROM debian:11-slim
+FROM debian:12-slim
 
 # Maintainer
 LABEL org.opencontainers.image.authors="slange-dev"
@@ -22,13 +22,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     procps \
     wget \
     vlock \
-  && wget -O - https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz | tar xzf - \
-  && cd tmux-3.3a \
+  && wget -O - https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz | tar xzf - \
+  && cd tmux-3.4 \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
   && make \
   && make install \
   && cd .. \
-  && rm -rf tmux-3.3a \
+  && rm -rf tmux-3.4 \
   && apt-get purge -y gcc make \
   && apt-get -y autoremove \
   && apt-get clean \
