@@ -46,7 +46,7 @@ ENV LANG=en_US.UTF-8
 #WORKDIR /root
 
 # Set shell to bash
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 # Install Powerline symbols and fonts
 RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
