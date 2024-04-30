@@ -1,5 +1,5 @@
-# Set the base image to Debian 11 slim
-FROM debian:12-slim
+# Set the base image to Debian 12
+FROM debian:12
 
 # Maintainer
 LABEL org.opencontainers.image.authors="slange-dev"
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.authors="slange-dev"
 LABEL version="0.1"
 
 # Install dependencies and build tmux
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
     bc \
     ca-certificates \
     fontconfig \
@@ -29,9 +29,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && make install \
   && cd .. \
   && rm -rf tmux-3.4 \
-  && apt-get purge -y gcc make \
-  && apt-get -y autoremove \
-  && apt-get clean \
+  && apt purge -y gcc make \
+  && apt autoremove -y \
+  && apt clean \
   && rm -rf /var/lib/apt/lists/*
 
 # Set language
@@ -43,7 +43,7 @@ ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
 # Set workdir
-#WORKDIR /root
+WORKDIR /root
 
 # Set shell to bash
 #SHELL ["/bin/bash", "-c"]
