@@ -50,7 +50,7 @@ mkdir -p ~/.scripts/tmux
 # Symlink tmux scripts
 echo -e "Symlink tmux scripts\n"
 ln -sf ~/.tmux/tmux/yank.sh ~/.scripts/tmux/yank.sh
-#ln -sf ~/.tmux/tmux.conf ~/.scripts/
+ln -sf ~/.tmux/tmux/renew_env.sh ~/.scripts/tmux/renew_env.sh
 ln -sf ~/.tmux/tmux/tmux-update-display.sh ~/.scripts/tmux/tmux-update-display.sh
 
 # Chmod tmux scripts to +x
