@@ -37,4 +37,4 @@ function start_tmux() {
 }
 
 # call the function
-start_tmux
+#start_tmux
