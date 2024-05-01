@@ -1,4 +1,4 @@
-name: Tmux Docker test run
+name: Build Tmux from source in Docker
 on:
   push:
     branches: [ "master", "main" ]
@@ -12,9 +12,8 @@ jobs:
     compile:
         name: Compile tmux
         runs-on: ubuntu-latest
-        #runs-on: ubuntu-latest
         steps:
           - name: Check out the repository
             uses: actions/checkout@main
-          - name: Run the build process with Docker
+          - name: Run the build process
             run: docker build . --file Dockerfile --tag tmux-config-testing:$(date +%s)
