@@ -39,6 +39,17 @@ fi
 # Symlink tmux config file
 ln -sf ~/.tmux/tmux/tmux.conf ~/.tmux.conf
 
+# Create tmux script directory
+mkdir -p ~/.scripts/tmux
+
+# Symlink tmux scripts
+ln -sf ~/.tmux/yank.sh ~/.scripts/yank.sh
+#ln -sf ~/.tmux/tmux.conf ~/.scripts/
+#ln -sf ~/.tmux/tmux.conf ~/.scripts/
+
+# Chmod tmux scripts to +x
+chmod +x ~/.scripts/
+
 # Install TPM plugins
 echo -e "Install TPM plugins\n"
 
