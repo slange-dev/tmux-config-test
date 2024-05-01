@@ -38,9 +38,10 @@ echo -e "Backup tmux config file\n"
 cp -f ~/.tmux.conf ~/.tmux.conf.bak 2>/dev/null || true
 fi
 
-# Symlink tmux config file
-echo -e "Symlink tmux config file\n"
+# Symlink tmux config files
+echo -e "Symlink tmux config files\n"
 ln -sf ~/.tmux/tmux/tmux.conf ~/.tmux.conf
+ln -sf ~/.tmux/tmux/tmux.remote.conf ~/.tmux.remote.conf
 
 # Create tmux script directory
 echo -e "Create tmux script directory\n"
