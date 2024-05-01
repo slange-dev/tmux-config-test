@@ -32,23 +32,27 @@ fi
 if [ -e "~/.tmux.conf" ]; then
   echo -e "Found existing .tmux.conf in your \$HOME directory. Will create a backup at $HOME/.tmux.conf.bak\n"
   
-  # Backup tmux config file
+# Backup tmux config file
   cp -f ~/.tmux.conf ~/.tmux.conf.bak 2>/dev/null || true
 fi
 
 # Symlink tmux config file
+echo -e "Symlink tmux config file\n"
 ln -sf ~/.tmux/tmux/tmux.conf ~/.tmux.conf
 
 # Create tmux script directory
+echo -e "Create tmux script directory\n"
 mkdir -p ~/.scripts/tmux
 
 # Symlink tmux scripts
-ln -sf ~/.tmux/yank.sh ~/.scripts/yank.sh
+echo -e "Symlink tmux scripts\n"
+ln -sf ~/.tmux/tmux/yank.sh ~/.scripts/tmux/yank.sh
 #ln -sf ~/.tmux/tmux.conf ~/.scripts/
 #ln -sf ~/.tmux/tmux.conf ~/.scripts/
 
 # Chmod tmux scripts to +x
-chmod +x ~/.scripts/
+echo -e "Chmod tmux scripts\n"
+chmod -R +x ~/.scripts/*.sh
 
 # Install TPM plugins
 echo -e "Install TPM plugins\n"
