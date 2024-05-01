@@ -24,8 +24,9 @@ fi
 if [ ! -e "~/.tmux/plugins/tpm" ]; then
   echo -e "WARNING: Cannot found TPM (Tmux Plugin Manager) at default location: \$HOME/.tmux/plugins/tpm.\n"
 
-  # Clone tmux plugin manager (tpm)
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# Clone tmux plugin manager (tpm)
+echo -e "Clone tmux plugin manager (tpm)\n"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 # Check if tmux config file exist, then backup the file
@@ -33,7 +34,8 @@ if [ -e "~/.tmux.conf" ]; then
   echo -e "Found existing .tmux.conf in your \$HOME directory. Will create a backup at $HOME/.tmux.conf.bak\n"
   
 # Backup tmux config file
-  cp -f ~/.tmux.conf ~/.tmux.conf.bak 2>/dev/null || true
+echo -e "Backup tmux config file\n"
+cp -f ~/.tmux.conf ~/.tmux.conf.bak 2>/dev/null || true
 fi
 
 # Symlink tmux config file
@@ -52,7 +54,7 @@ ln -sf ~/.tmux/tmux/yank.sh ~/.scripts/tmux/yank.sh
 
 # Chmod tmux scripts to +x
 echo -e "Chmod tmux scripts\n"
-chmod -R +x ~/.scripts/*.sh
+chmod -R +x ~/.scripts
 
 # Install TPM plugins
 echo -e "Install TPM plugins\n"
@@ -67,4 +69,4 @@ tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # Finish!
-echo -e "OK: Completed\n"
+echo -e "OK: Tmux installation completed\n"
