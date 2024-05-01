@@ -51,7 +51,7 @@ mkdir -p ~/.scripts/tmux
 echo -e "Symlink tmux scripts\n"
 ln -sf ~/.tmux/tmux/yank.sh ~/.scripts/tmux/yank.sh
 #ln -sf ~/.tmux/tmux.conf ~/.scripts/
-#ln -sf ~/.tmux/tmux.conf ~/.scripts/
+ln -sf ~/.tmux/tmux/tmux-update-display.sh ~/.scripts/tmux/tmux-update-display.sh
 
 # Chmod tmux scripts to +x
 echo -e "Chmod tmux scripts\n"
@@ -59,7 +59,6 @@ chmod -R +x ~/.scripts
 
 # Install TPM plugins
 echo -e "Install TPM plugins\n"
-
 # TPM requires running tmux server,
 # as soon as `tmux start-server` does not work,
 # create dump __noop session in detached mode
