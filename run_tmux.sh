@@ -35,3 +35,6 @@ function start_tmux() {
             fi
     fi
 }
+
+# call the function
+start_tmux
