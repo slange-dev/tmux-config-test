@@ -59,12 +59,11 @@ RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
 RUN mkdir -p ~/.tmux \
   && git clone https://github.com/slange-dev/tmux-config-testings ~/.tmux \
   && chmod +x ~/.tmux/install.sh \
-  && source ~/.tmux/install.sh \
-  && chmod +x ~/.tmux/run_tmux.sh \
-  && source ~/.tmux/run_tmux.sh
-  #\
-  #&& rm -rf ~/.tmux
+  && source ~/.tmux/install.sh
 
-# Set term env to 256 colors
-# tmux-256color?
+# Set term env to *-256 colors
 ENV TERM=xterm-256color
+
+# Run tmux
+RUN chmod +x ~/.tmux/run_tmux.sh \
+  && source ~/.tmux/run_tmux.sh
