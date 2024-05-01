@@ -55,12 +55,13 @@ RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
   && wget -P ~/.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
   && fc-cache -vf ~/.local/share/fonts
 
-# Install tmux config from tmux testing repository
+# Install tmux config files from tmux testing repository
 RUN mkdir -p ~/.tmux \
   && git clone https://github.com/slange-dev/tmux-config-testings ~/.tmux \
   && chmod +x ~/.tmux/install.sh \
   && source ~/.tmux/install.sh \
-  && source ~/.tmux/run.sh
+  && chmod +x ~/.tmux/run_tmux.sh \
+  && source ~/.tmux/run_tmux.sh
   #\
   #&& rm -rf ~/.tmux
 
