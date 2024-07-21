@@ -61,6 +61,9 @@ RUN mkdir -p ~/.tmux \
   && chmod +x ~/.tmux/install.sh \
   && source ~/.tmux/install.sh
 
+#
+#RUN apt autoremove -y
+
 # Set term env to *-256 colors
 ENV TERM=xterm-256color
 
