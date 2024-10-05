@@ -10,6 +10,9 @@ LABEL version="0.1"
 # Install dependencies and build tmux
 RUN apt update && apt install -y --no-install-recommends \
     bc \
+    build-essential \
+    bison \
+    byacc \
     ca-certificates \
     fontconfig \
     git \
@@ -19,6 +22,7 @@ RUN apt update && apt install -y --no-install-recommends \
     libncurses-dev \
     locales \
     make \
+    pkg-config \
     procps \
     wget \
     vlock \
