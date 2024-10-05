@@ -2,7 +2,7 @@
 ##################################################################################
 # @Version       : 
 # @Author        : Sebastian Lange
-# @Contact       : slange-dev@mail.ru
+# @Contact       : 
 # @License       : 
 # @ReadME        : 
 # @Copyright     : Copyright: (c) 2022 Sebastian Lange, Home Developments
