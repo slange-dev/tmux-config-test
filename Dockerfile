@@ -23,13 +23,13 @@ RUN apt update && apt install -y --no-install-recommends \
     wget \
     vlock \
     yacc \
-  && wget -O - https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz | tar xzf - \
-  && cd tmux-3.4 \
+  && wget -O - https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz | tar xzf - \
+  && cd tmux-3.5a \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
   && make \
   && make install \
   && cd .. \
-  && rm -rf tmux-3.4 \
+  && rm -rf tmux-3.5a \
   && apt purge -y gcc make \
   && apt -y autoremove \
   && apt clean \
