@@ -46,21 +46,17 @@ ln -sf ~/.tmux/tmux/tmux.remote.conf ~/.tmux.remote.conf
 # Create tmux script directory
 echo -e "Create tmux script directory\n"
 mkdir -p ~/.scripts/tmux
-
-# For yank script
 mkdir -p ~/.bin/tmux
 
 # Symlink tmux scripts
 echo -e "Symlink tmux scripts\n"
 ln -sf ~/.tmux/tmux/yank.sh ~/.bin/tmux/yank.sh
-ln -sf ~/.tmux/tmux/renew_env.sh ~/.scripts/tmux/renew_env.sh
-ln -sf ~/.tmux/tmux/tmux-update-display.sh ~/.scripts/tmux/tmux-update-display.sh
+ln -sf ~/.tmux/tmux/renew_env.sh  ~/.bin/tmux/renew_env.sh
+ln -sf ~/.tmux/tmux/tmux-update-display.sh  ~/.bin/tmux/tmux-update-display.sh
 
 # Chmod tmux scripts to +x
 echo -e "Chmod tmux scripts\n"
 chmod -R +x ~/.scripts
-
-#
 chmod -R +x ~/.bin/tmux
 
 # Install TPM plugins
