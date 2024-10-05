@@ -25,7 +25,7 @@ function start_tmux() {
         fi
 
             # Check if term is set to use 256 colours
-            if [ $TERM == '*256color' ]; then
+            if [ $TERM == '*256color*' ]; then
 				# Force tmux to using 256 colours
 				command tmux -2 -u attach-session -d
             else
