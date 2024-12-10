@@ -10,47 +10,63 @@
 # This is performed by using tmux send-keys to the shell.
 # This script handles updating $DISPLAY within vim also
 
-if [[ $NEW_DISPLAY != $DISPLAY ]]; then
-    NEW_DISPLAY=$DISPLAY
+# Check if DISPLAY is set
+if [ -z "$DISPLAY" ]; then
+    echo "Error: DISPLAY environment variable is not set"
+    exit 1
+fi
+
+# Update NEW_DISPLAY if it differs from DISPLAY
+if [[ "$NEW_DISPLAY" != "$DISPLAY" ]]; then
+    NEW_DISPLAY="$DISPLAY"
     #NEW_DISPLAY=$(tmux show-env | sed -n 's/^DISPLAY=//p')
 fi
 
-# check if lljbash/zsh-renew-tmux-env installed
-if [[ ! -z $(type zsh 2>/dev/null) ]]; then
-    HAS_RENEW=$(zsh -ci 'type renew_tmux_env | grep function')
+# Check if zsh is installed and has renew_tmux_env function
+if command -v zsh >/dev/null 2>&1; then
+    HAS_RENEW="$(zsh -ci 'type renew_tmux_env 2>/dev/null | grep -q function && echo "yes"')"
 else
-    HAS_RENEW=
+    HAS_RENEW=""
 fi
 
-#
+# Temporarily disable monitoring
 tmux set-option -wg monitor-activity off
 tmux set-option -wg monitor-bell off
 
-#
+# Process each pane
 tmux list-panes -s -F "#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}" | \
-while read pane_process
-do
-   IFS=' ' read -ra pane_process <<< "$pane_process"
-   if [[ "${pane_process[1]}" == "zsh" || "${pane_process[1]}" == "bash" ]]; then
-      tmux send-keys -t ${pane_process[0]} "export DISPLAY=$NEW_DISPLAY" Enter
-        if [[ ! -z $HAS_RENEW ]]; then
-            tmux send-keys -t ${pane_process[0]} Escape
-        else
-            tmux send-keys -t ${pane_process[0]} "export DISPLAY=$NEW_DISPLAY" Enter
-        fi
-    elif [[ "${pane_process[1]}" == *"python"* ]]; then
-      tmux send-keys -t ${pane_process[0]} "import os; os.environ['DISPLAY']=\"$NEW_DISPLAY\"" Enter
-    elif [[ "${pane_process[1]}" == *"vi"* ]]; then
-        tmux send-keys -t ${pane_process[0]} Escape
-        tmux send-keys -t ${pane_process[0]} ":let \$DISPLAY = \"$NEW_DISPLAY\"" Enter
-        tmux send-keys -t ${pane_process[0]} ":silent! xrestore" Enter
-    elif [[ "${pane_process[1]}" == *"vim"* ]]; then
-      tmux send-keys -t ${pane_process[0]} Escape
-      tmux send-keys -t ${pane_process[0]} ":let \$DISPLAY = \"$NEW_DISPLAY\"" Enter
-   fi
+while read -r pane_process; do
+    # Split into array
+    IFS=' ' read -ra pane_parts <<< "$pane_process"
+    pane="${pane_parts[0]}"
+    cmd="${pane_parts[1]}"
+
+    case "$cmd" in
+        "zsh"|"bash")
+            if [[ -n "$HAS_RENEW" ]]; then
+                tmux send-keys -t "$pane" "export DISPLAY=$NEW_DISPLAY" Enter
+                tmux send-keys -t "$pane" Escape
+            else
+                tmux send-keys -t "$pane" "export DISPLAY=$NEW_DISPLAY" Enter
+            fi
+            ;;
+        *"python"*)
+            tmux send-keys -t "$pane" "import os; os.environ['DISPLAY']=\"$NEW_DISPLAY\"" Enter
+            ;;
+        *"vi"*|*"vim"*)
+            tmux send-keys -t "$pane" Escape
+            tmux send-keys -t "$pane" ":let \$DISPLAY = \"$NEW_DISPLAY\"" Enter
+            # Only run xrestore for vi (not vim)
+            if [[ "$cmd" == *"vi" && "$cmd" != *"vim"* ]]; then
+                tmux send-keys -t "$pane" ":silent! xrestore" Enter
+            fi
+            ;;
+    esac
 done
 
-#
+# Optional delay (uncomment if needed)
 #sleep 30
+
+# Re-enable monitoring
 tmux set-option -wg monitor-activity on
 tmux set-option -wg monitor-bell on
