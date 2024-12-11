@@ -33,7 +33,7 @@ fi
 # Copy tmux configuration files from the current directory to ~/.tmux/
 echo -e "Copying tmux configuration files to ~/.tmux/\n"
 
-cp -f "$REPODIR/tmux/.tmux.template.conf" "$HOME/.tmux/.tmux.template.conf"
+cp -f "$HOME/tmux-config-testings/tmux/.tmux.template.conf" "$HOME/.tmux/.tmux.template.conf"
 
 # Commenting out for docker build tests
 #cp -f tmux/tmux.conf "$HOME/.tmux/tmux.conf"
