@@ -30,18 +30,6 @@ if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
-# Copy tmux configuration files from the current directory to ~/.tmux/
-echo -e "Copying tmux configuration files to ~/.tmux/\n"
-
-cp -f "$HOME/tmux-config-testings/tmux/.tmux.template.conf" "$HOME/.tmux/.tmux.template.conf"
-
-# Commenting out for docker build tests
-#cp -f tmux/tmux.conf "$HOME/.tmux/tmux.conf"
-#cp -f tmux/tmux.remote.conf "$HOME/.tmux/tmux.remote.conf"
-#cp -f tmux/yank.sh "$HOME/.tmux/yank.sh"
-#cp -f tmux/renew_env.sh "$HOME/.tmux/renew_env.sh"
-#cp -f tmux/tmux-update-display.sh "$HOME/.tmux/tmux-update-display.sh"
-
 # Check if tmux config file exists, then backup the file
 if [ -e "$HOME/.tmux.conf" ]; then
   echo -e "Found existing .tmux.conf in your \$HOME directory. Creating a backup at $HOME/.tmux.conf.bak\n"
@@ -50,6 +38,15 @@ if [ -e "$HOME/.tmux.conf" ]; then
   echo -e "Backing up tmux config file\n"
   cp -f "$HOME/.tmux.conf" "$HOME/.tmux.conf.bak" 2>/dev/null || true
 fi
+
+# Copy tmux configuration files from the current directory to ~/.tmux/
+echo -e "Copying tmux configuration files to ~/.tmux/\n"
+#cp -f "$HOME/tmux-config-testings/tmux/.tmux.template.conf" "$HOME/.tmux/.tmux.template.conf"
+cp -f "$HOME/tmux-config-testings/tmux/tmux.conf" "$HOME/.tmux/tmux.conf"
+cp -f "$HOME/tmux-config-testings/tmux/tmux.remote.conf" "$HOME/.tmux/tmux.remote.conf"
+cp -f "$HOME/tmux-config-testings/tmux/yank.sh" "$HOME/.tmux/yank.sh"
+cp -f "$HOME/tmux-config-testings/tmux/renew_env.sh" "$HOME/.tmux/renew_env.sh"
+cp -f "$HOME/tmux-config-testings/tmux/tmux-update-display.sh" "$HOME/.tmux/tmux-update-display.sh"
 
 # Symlink tmux config files
 echo -e "Creating symlinks for tmux config files\n"
