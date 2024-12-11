@@ -60,10 +60,10 @@ RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
   && fc-cache -vf ~/.local/share/fonts
 
 # Install tmux config files from tmux testing repository
-RUN mkdir -p ~/.tmux \
-  && git clone https://github.com/slange-dev/tmux-config-testings ~/.tmux \
-  && chmod +x ~/.tmux/install.sh \
-  && source ~/.tmux/install.sh
+RUN mkdir -p ~/tmux-config-testings \
+  && git clone https://github.com/slange-dev/tmux-config-testings ~/tmux-config-testings \
+  && chmod +x ~/tmux-config-testings/install.sh \
+  && source ~/tmux-config-testings/install.sh
 
 #
 #RUN apt autoremove -y
@@ -72,5 +72,5 @@ RUN mkdir -p ~/.tmux \
 ENV TERM=xterm-256color
 
 # Run tmux
-RUN chmod +x ~/.tmux/run_tmux.sh \
-  && source ~/.tmux/run_tmux.sh
+RUN chmod +x ~/tmux-config-testings/run_tmux.sh \
+  && source ~/tmux-config-testings/run_tmux.sh
