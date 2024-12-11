@@ -18,6 +18,9 @@ if ! is_app_installed tmux; then
   exit 1
 fi
 
+# Create tmux directory
+mkdir -p "$HOME/.tmux"
+
 # Check if tmux plugin manager is installed
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
   echo -e "WARNING: Cannot found TPM (Tmux Plugin Manager) at default location: \$HOME/.tmux/plugins/tpm.\n"
@@ -29,17 +32,20 @@ fi
 
 # Copy tmux configuration files from the current directory to ~/.tmux/
 echo -e "Copying tmux configuration files to ~/.tmux/\n"
-mkdir -p "$HOME/.tmux"
-cp -f tmux/tmux.conf "$HOME/.tmux/tmux.conf"
-cp -f tmux/tmux.remote.conf "$HOME/.tmux/tmux.remote.conf"
-cp -f tmux/yank.sh "$HOME/.tmux/yank.sh"
-cp -f tmux/renew_env.sh "$HOME/.tmux/renew_env.sh"
-cp -f tmux/tmux-update-display.sh "$HOME/.tmux/tmux-update-display.sh"
+
+cp -f tmux/.tmux.template.conf "$HOME/.tmux/.tmux.template.conf"
+
+# Commenting out for docker build tests
+#cp -f tmux/tmux.conf "$HOME/.tmux/tmux.conf"
+#cp -f tmux/tmux.remote.conf "$HOME/.tmux/tmux.remote.conf"
+#cp -f tmux/yank.sh "$HOME/.tmux/yank.sh"
+#cp -f tmux/renew_env.sh "$HOME/.tmux/renew_env.sh"
+#cp -f tmux/tmux-update-display.sh "$HOME/.tmux/tmux-update-display.sh"
 
 # Check if tmux config file exists, then backup the file
 if [ -e "$HOME/.tmux.conf" ]; then
   echo -e "Found existing .tmux.conf in your \$HOME directory. Creating a backup at $HOME/.tmux.conf.bak\n"
-  
+
   # Backup tmux config file
   echo -e "Backing up tmux config file\n"
   cp -f "$HOME/.tmux.conf" "$HOME/.tmux.conf.bak" 2>/dev/null || true
@@ -68,7 +74,7 @@ chmod -R +x "$HOME/.bin/tmux"
 echo -e "Installing TPM plugins\n"
 # TPM requires running tmux server
 # If `tmux start-server` doesn't work, create a dummy session, install plugins, and then kill it
-tmux new -d -s __noop >/dev/null 2>&1 || true 
+tmux new -d -s __noop >/dev/null 2>&1 || true
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins"
 "$HOME/.tmux/plugins/tpm/bin/install_plugins" || true
 tmux kill-session -t __noop >/dev/null 2>&1 || true
