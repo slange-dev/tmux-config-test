@@ -47,6 +47,12 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
+# Set user env to root
+ENV USER=root
+
+# Set term env to *-256 colors
+ENV TERM=xterm-256color
+
 # Set workdir
 WORKDIR /root
 
@@ -54,10 +60,12 @@ WORKDIR /root
 SHELL ["/bin/bash", "-c"]
 
 # Install Powerline symbols and fonts
-RUN mkdir -p ~/.local/share/fonts/powerline ~/.config/fontconfig/conf.d \
-  && wget -P ~/.local/share/fonts/powerline https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
-  && wget -P ~/.config/fontconfig/conf.d/ https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
-  && fc-cache -vf ~/.local/share/fonts
+#RUN mkdir -p /usr/local/share/fonts/powerline /usr/share/fontconfig/conf.avail \
+#&&
+RUN wget -P /usr/local/share/fonts/powerline https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
+  && wget -P /usr/share/fontconfig/conf.avail https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
+  && ln -s /usr/share/fontconfig/conf.avail/10-powerline-symbols.conf /etc/fonts/conf.d/10-powerline-symbols.conf \
+  && fc-cache -vf /usr/local/share/fonts/powerline
 
 # Install tmux config files from tmux testing repository
 RUN mkdir -p ~/tmux-config-testings \
@@ -65,15 +73,8 @@ RUN mkdir -p ~/tmux-config-testings \
   && chmod +x ~/tmux-config-testings/install.sh \
   && source ~/tmux-config-testings/install.sh
 
-#
-#RUN apt autoremove -y
-
-# Set user env to root
-ENV USER=root
-
-# Set term env to *-256 colors
-ENV TERM=xterm-256color
+# Copy tmux start script
+COPY run_tmux.sh ~/run_tmux.sh
 
 # Run tmux
-RUN chmod +x ~/tmux-config-testings/run_tmux.sh \
-  && source ~/tmux-config-testings/run_tmux.sh
+ENTRYPOINT ["/bin/bash", "~/run_tmux.sh"]
