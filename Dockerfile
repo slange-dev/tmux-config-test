@@ -68,6 +68,7 @@ RUN mkdir -p ~/tmux-config-testings \
 #
 #RUN apt autoremove -y
 
+# Set user env to root
 ENV USER=root
 
 # Set term env to *-256 colors
