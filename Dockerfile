@@ -3,34 +3,34 @@ FROM debian:12-slim
 
 # Maintainer
 LABEL maintainer="slange-dev" \
-    org.opencontainers.image.authors="slange-dev" \
-    org.opencontainers.image.title="tmux-config-testings" \
-    org.opencontainers.image.description="Tmux config testings" \
-    org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-testings"
+  org.opencontainers.image.authors="slange-dev" \
+  org.opencontainers.image.title="tmux-config-testings" \
+  org.opencontainers.image.description="Tmux config testings" \
+  org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-testings"
 
 # Version
 LABEL version="0.1"
 
 # Install dependencies and build tmux
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    bc \
-    build-essential \
-    bison \
-    byacc \
-    ca-certificates \
-    fontconfig \
-    git \
-    gcc \
-    iputils-ping \
-    libevent-dev \
-    libncurses-dev \
-    locales \
-    make \
-    pkg-config \
-    procps \
-    wget \
-    vlock \
-    yacc \
+  bc \
+  build-essential \
+  bison \
+  byacc \
+  ca-certificates \
+  fontconfig \
+  git \
+  gcc \
+  iputils-ping \
+  libevent-dev \
+  libncurses-dev \
+  locales \
+  make \
+  pkg-config \
+  procps \
+  wget \
+  vlock \
+  yacc \
   && wget -O - https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz | tar xzf - \
   && cd tmux-3.5a \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
@@ -46,7 +46,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Set language
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
-    && locale-gen
+  && locale-gen
 
 # Set language env
 ENV LC_ALL=en_US.UTF-8
