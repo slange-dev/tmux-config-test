@@ -2,7 +2,11 @@
 FROM debian:12-slim
 
 # Maintainer
-LABEL org.opencontainers.image.authors="slange-dev"
+LABEL maintainer="slange-dev" \
+    org.opencontainers.image.authors="slange-dev" \
+    org.opencontainers.image.title="tmux-config-testings" \
+    org.opencontainers.image.description="Tmux config testings" \
+    org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-testings"
 
 # Version
 LABEL version="0.1"
@@ -34,14 +38,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && make install \
   && cd .. \
   && rm -rf tmux-3.5a \
-  && apt purge -y gcc make \
-  && apt -y autoremove \
-  && apt clean \
+  && apt-get purge -y gcc make \
+  && apt-get autoremove -y \
+  && apt-get clean -y \
+  && apt-get autoclean -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Set language
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
-  && locale-gen
+    && locale-gen
 
 # Set language env
 ENV LC_ALL=en_US.UTF-8
@@ -60,8 +65,6 @@ WORKDIR /root
 SHELL ["/bin/bash", "-c"]
 
 # Install Powerline symbols and fonts
-#RUN mkdir -p /usr/local/share/fonts/powerline /usr/share/fontconfig/conf.avail \
-#&&
 RUN wget -P /usr/local/share/fonts/powerline https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
   && wget -P /usr/share/fontconfig/conf.avail https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
   && ln -s /usr/share/fontconfig/conf.avail/10-powerline-symbols.conf /etc/fonts/conf.d/10-powerline-symbols.conf \
