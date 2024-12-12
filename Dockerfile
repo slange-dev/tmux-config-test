@@ -74,7 +74,7 @@ RUN mkdir -p ~/tmux-config-testings \
   && source ~/tmux-config-testings/install.sh
 
 # Copy tmux start script
-COPY run_tmux.sh ~/run_tmux.sh
+COPY run_tmux.sh run_tmux.sh
 
 # Run tmux
-ENTRYPOINT ["/bin/bash", "~/run_tmux.sh"]
+ENTRYPOINT ["/bin/bash", "run_tmux.sh"]
