@@ -11,6 +11,9 @@ LABEL maintainer="slange-dev" \
 # Version
 LABEL version="0.1"
 
+# Set workdir
+WORKDIR /root
+
 # Install dependencies and build tmux
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
@@ -57,9 +60,6 @@ ENV USER=root
 
 # Set term env to *-256 colors
 ENV TERM=xterm-256color
-
-# Set workdir
-WORKDIR /root
 
 # Set shell to bash
 SHELL ["/bin/bash", "-c"]
