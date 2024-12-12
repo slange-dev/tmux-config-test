@@ -15,7 +15,7 @@ function start_tmux() {
         # Session found and attach for the user
         echo "Attaching to existing tmux session: $sessionName"
         tmux attach-session -t "$sessionName"
-    else 
+    else
         # If it wasn't a session for the user, start a new one
         echo "Starting new tmux session: $sessionName"
         tmux new-session -s "$sessionName" -d
