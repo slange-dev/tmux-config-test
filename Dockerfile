@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.authors="slange-dev"
 LABEL version="0.1"
 
 # Install dependencies and build tmux
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
     build-essential \
     bison \
