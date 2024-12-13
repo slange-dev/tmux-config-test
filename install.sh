@@ -18,7 +18,8 @@ if ! is_app_installed tmux; then
   exit 1
 fi
 
-# Create tmux directory
+# Create tmux config directory if not exists
+echo -e "Creating tmux config directory\n"
 mkdir -p "$HOME/.tmux"
 
 # Check if tmux plugin manager is installed
