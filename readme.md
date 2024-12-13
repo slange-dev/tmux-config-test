@@ -37,7 +37,10 @@ Features
 - highlight focused pane
 - merge current session with existing one (move all windows)
 - configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
-- integration with 3rd party plugins: [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar), [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
+- integration with 3rd party plugins: 
+- [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar), 
+- [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
+
 
 **Status line widgets**:
 
@@ -63,9 +66,9 @@ On OSX you can install latest 2.6 version with `brew install tmux`. On Linux it'
 
 
 To install tmux-config:
-```
-$ git clone https://github.com/slange-dev/tmux-config.git
-$ ./tmux-config/install.sh
+```bash
+$ git clone https://github.com/slange-dev/tmux-config-testings.git
+$ ./tmux-config-testings/install.sh
 ```
 
 `install.sh` script does following:
@@ -76,7 +79,7 @@ $ ./tmux-config/install.sh
 
 Finally, you can jump into a new tmux session:
 
-```
+```bash
 $ tmux new
 ```
 
@@ -106,7 +109,7 @@ Windows and pane indexing starts from `1` rather than `0`. Scrollback history li
 
 256 color palette support is turned on, make sure that your parent terminal is configured propertly. See [here](https://unix.stackexchange.com/questions/1045/getting-256-colors-to-work-in-tmux) and [there](https://github.com/tmux/tmux/wiki/FAQ)
 
-```
+```bash
 # parent terminal
 $ echo $TERM
 xterm-256color
@@ -406,11 +409,11 @@ Use **[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequen
 Second workaround is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168):
 
 - SSH onto target machine with remote tunneling on
-    ```
+    ```bash
     ssh -R 2222:localhost:3333  alexeys@192.168.33.100
     ```
 - When text is copied inside tmux (by mouse, by keyboard by whatever configured shortcut), pipe text to network socket on remote machine
-    ```
+    ```bash
     echo "buffer" | nc localhost 2222
     ```
 - Buffer will be sent thru SSH remote tunnel from port `2222` on remote machine to port `3333` on local machine.
@@ -427,7 +430,7 @@ Themes and customization
 
 All colors related to theme are declared as variables. You can change them in `~/.tmux.conf`.
 
-```
+```bash
 # This is a theme CONTRACT, you are required to define variables below
 # Change values, but not remove/rename variables itself
 color_dark="$color_black"
@@ -460,7 +463,7 @@ For example, when "^⌘↑" pressed, sequence of bytes `0x01 0x1b 0x5b 0x31 0x3b
 
 You can get binary representation of any keys, using `showkey` or `od` commands
 
-```
+```bash
 $od -t x1
 
 ^A^[[1;5A   // press C-a C-↑ on your keyboard
@@ -468,7 +471,7 @@ $od -t x1
 0000007
 ```
 
-```
+```bash
 $ showkey -a
 Press any keys - Ctrl-D will terminate this program
 
