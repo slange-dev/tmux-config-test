@@ -1,14 +1,12 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-testings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Tmux Configuration
-=====================
+# Tmux Configuration
 Tmux configuration, that supercharges your [tmux](https://tmux.github.io/)
 and builds cozy and cool terminal environment.
 
 ![intro](https://user-images.githubusercontent.com/768858/33152741-ec5f1270-cfe6-11e7-9570-6d17330a83aa.gif)
 
-Table of contents
------------------
+## Table of contents
 
 1. [Features]( #features)
 2. [Installation]( #installation)
@@ -21,8 +19,7 @@ Table of contents
 9. [Themes and customization]( #themes-and-customization)
 10. [iTerm2 and tmux integration]( #iterm2-and-tmux-integration)
 
-Features
----------
+## Features
 
 - "C-a" prefix instead of "C-b" (screen like)
 - support for nested tmux sessions
@@ -38,9 +35,8 @@ Features
 - merge current session with existing one (move all windows)
 - configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
 - integration with 3rd party plugins: 
-- [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar), 
+- [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar)
 - [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
-
 
 **Status line widgets**:
 
@@ -53,9 +49,8 @@ Features
 - online/offline visual indicator
 - toggle visibility of status line
 
+## Installation
 
-Installation
--------------
 Prerequisites:
 - tmux >= "v2.4"
 - OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
@@ -83,8 +78,8 @@ Finally, you can jump into a new tmux session:
 tmux new
 ```
 
-Setup tmux with terminator
---------------------------
+## Setup tmux with terminator
+
 Note: xclip is needed to fix the mouse copy-paste issue.
 ```bash
 sudo apt install terminator xclip
@@ -103,8 +98,8 @@ sudo apt install terminator xclip
 
 ![image](https://user-images.githubusercontent.com/19916930/135396261-198194fe-3133-4e73-b405-da76d9a42add.png)
 
-General settings
-----------------
+## General settings
+
 Windows and pane indexing starts from `1` rather than `0`. Scrollback history limit is set to `20000`. Automatic window renameing is turned off. Aggresive resizing is on. Message line display timeout is `1.5s`. Mouse support in `on`.
 
 256 color palette support is turned on, make sure that your parent terminal is configured propertly. See [here](https://unix.stackexchange.com/questions/1045/getting-256-colors-to-work-in-tmux) and [there](https://github.com/tmux/tmux/wiki/FAQ)
@@ -120,8 +115,8 @@ echo $TERM
 screen-256color
 ```
 
-Key bindings
------------
+## Key bindings
+
 So `~/.tmux.conf` overrides default key bindings for many action, to make them more reasonable, easy to recall and comforable to type.
 
 Let's go through them. 
@@ -312,8 +307,7 @@ If you are an iTerm2 user, third column describes the keybinding of similar  "ac
     </tr>
 </table>
 
-Status line
------------
+## Status line
 
 I've started with Powerline as a status line, but then realized it's too fat for my Macbook 15'' display, it hardly can fit all those fancy arrows, widgets and separators, so that I can only see one window "tab".
 
@@ -342,8 +336,8 @@ The right part of status line consists of following components:
 You might want to hide status bar using `<prefix> C-s` keybinding.
 
 
-Nested tmux sessions
---------------------
+## Nested tmux sessions
+
 One prefers using tmux on local machine to supercharge their terminal emulator experience, other use it only for remote scenarios to retain session/state in case of disconnect. Things are getting more complex, when you want to be on both sides. You end up with nested session, and face the question: **How you can control inner session, since all keybindings are caught and handled by outer session?**. Community provides several possible solutions.
 
 The most common is to press `C-a` prefix twice. First one is caught by local session, whereas second is passed to remote one. Nothing extra steps need to be done, this works out of the box. However, root keytable bindings are still handled by outer session, and cannot be passed to inner one.
@@ -368,8 +362,8 @@ Remote session is detected by existence of `$SSH_CLIENT` variable. When session 
 
 You can apply remote-specific settings by extending `~/.tmux/.tmux.remote.conf` file.
 
-Copy mode
-----------------------
+## Copy mode
+
 There are some tweaks to copy mode and scrolling behavior, you should be aware of.
 
 There is a root keybinding to enter Copy mode: `M-Up`. Once in copy mode, you have several scroll controls:
@@ -389,8 +383,7 @@ You can also select text using mouse. Default behavior is to copy text and immed
 
 ![copy and scroll](https://user-images.githubusercontent.com/768858/33231146-e390afc8-d1f8-11e7-80ad-6977fc3a5df7.gif)
 
-Clipboard integration
-----------------------
+## Clipboard integration
 
 When you copy text inside tmux, it's stored in private tmux buffer, and not shared with system clipboard. Same is true when you SSH onto remote machine, and attach to tmux session there. Copied text will be stored in remote's session buffer, and not shared/transported to your local system clipboard. And sure, if you start local tmux session, then jump into nested remote session, copied text will not land in your system clipboard either.
 
@@ -425,8 +418,7 @@ On OSX you might need to install `reattach-to-user-namespace` wrapper: `brew ins
 
 On Linux, make sure `xclip` or `xsel` is installed. For remote scenarios, you would still need to setup network listener and use SSH remote tunneling, unless you terminal emulators supports OSC 52 sequences.
 
-Themes and customization
-------------------------
+## Themes and customization
 
 All colors related to theme are declared as variables. You can change them in `~/.tmux.conf`.
 
@@ -450,8 +442,7 @@ color_window_off_status_current_bg="colour254"
 Note, that variables are not extracted to dedicated file, as it should be, because for some reasons, tmux does not see variable values after sourcing `theme.conf` file. Don't know why.
 
 
-iTerm2 and tmux integration
----------------------------
+## iTerm2 and tmux integration
 
 If you're an iTerm use same to me, most likely you already have a muscle memory for most common actions and keybindings (split pane, focus pane, fullscreen pane, move between tabs, create new tab, etc). When I switched to tmux, I found new key table more difficult: more keys to type, don't forget to enter `prefix` and recall if you've already pressed it or not (compare `C-a, c` with "⌘T", or `C-a ->` with "⌘⌥->"). iTerm2 keybinding was so natural to me, so I decided to remap most common keybindings to tell iTerm2 to execute corresponding tmux actions.
 
