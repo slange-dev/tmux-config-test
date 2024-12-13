@@ -1,6 +1,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-testings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 # Tmux Configuration
+
 Tmux configuration, that supercharges your [tmux](https://tmux.github.io/)
 and builds cozy and cool terminal environment.
 
@@ -91,6 +92,7 @@ sudo apt install terminator xclip
 ![image](https://user-images.githubusercontent.com/19916930/135396378-4d3acdc9-5653-4402-b515-43d2c2ce51a6.png)
 
 ### Auto launch tmux at terminal spawn
+
 1. Launch terminator (or Terminal Emulator if it auto launches terminator).
 2. Right click > `Prferences` > `Profiles` tab
 3. Under `default` profile, select sub-tab `Command`
