@@ -1,6 +1,6 @@
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-testings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-
 # Tmux Configuration
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-testings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Tmux configuration, that supercharges your [tmux](https://tmux.github.io/)
 and builds cozy and cool terminal environment.
@@ -35,7 +35,7 @@ and builds cozy and cool terminal environment.
 - highlight focused pane
 - merge current session with existing one (move all windows)
 - configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
-- integration with 3rd party plugins: 
+- integration with 3rd party plugins:
 - [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar)
 - [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
 
@@ -53,21 +53,30 @@ and builds cozy and cool terminal environment.
 ## Installation
 
 Prerequisites:
-- tmux >= "v2.4"
-- OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
+
+- Tmux >= "v2.4"
+- OSX
+- Linux (tested on Ubuntu 14 and CentOS7)
+- FreeBSD (tested on 11.1)
 
 Personally, I use it on OSX 10.11.5 El Capitan through iTerm2.
-
-On OSX you can install latest 2.6 version with `brew install tmux`. On Linux it's better to install from source, because official repositories usually contain outdated version. For example, CentOS7 - v1.8 from base repo, Ubuntu 14 - v1.8 from trusty/main. For how to install from source, see this [gist](https://gist.github.com/P7h/91e14096374075f5316e) or just google it.
+On OSX you can install latest 2.6 version with `brew install tmux`.
+On Linux it's better to install from source, 
+because official repositories usually contain outdated version.
+For example, CentOS7 - v1.8 from base repo,
+Ubuntu 14 - v1.8 from trusty/main.
+For how to install from source, see this [gist](https://gist.github.com/P7h/91e14096374075f5316e) or just google it.
 
 
 To install tmux-config:
+
 ```bash
 git clone https://github.com/slange-dev/tmux-config-testings.git
 ./tmux-config-testings/install.sh
 ```
 
 `install.sh` script does following:
+
 - copies files to `~/.tmux` directory
 - symlink tmux config file at `~/.tmux.conf`, existing `~/.tmux.conf` will be backed up
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) will be installed at default location `~/.tmux/plugins/tpm`, unless already presemt
@@ -82,9 +91,11 @@ tmux new
 ## Setup tmux with terminator
 
 Note: xclip is needed to fix the mouse copy-paste issue.
+
 ```bash
 sudo apt install terminator xclip
 ```
+
 1. Right click on `Terminal Emulator` > `Edit Applicaiton`.
 2. Set `Command` as `terminator`.
 3. Launch `Terminal Emulator`, `terminator` should launch directly.
@@ -105,6 +116,7 @@ sudo apt install terminator xclip
 Windows and pane indexing starts from `1` rather than `0`. Scrollback history limit is set to `20000`. Automatic window renameing is turned off. Aggresive resizing is on. Message line display timeout is `1.5s`. Mouse support in `on`.
 
 256 color palette support is turned on, make sure that your parent terminal is configured propertly. See [here](https://unix.stackexchange.com/questions/1045/getting-256-colors-to-work-in-tmux) and [there](https://github.com/tmux/tmux/wiki/FAQ)
+
 
 ```bash
 # parent terminal
@@ -191,7 +203,6 @@ The right part of status line consists of following components:
 
 You might want to hide status bar using `<prefix> C-s` keybinding.
 
-
 ## Nested tmux sessions
 
 One prefers using tmux on local machine to supercharge their terminal emulator experience, other use it only for remote scenarios to retain session/state in case of disconnect. Things are getting more complex, when you want to be on both sides. You end up with nested session, and face the question: **How you can control inner session, since all keybindings are caught and handled by outer session?**. Community provides several possible solutions.
@@ -213,6 +224,7 @@ You might notice that when key bindings are "OFF", special `[OFF]` visual indica
 ###  Local and remote sessions
 
 Remote session is detected by existence of `$SSH_CLIENT` variable. When session is remote, following changes are applied:
+
 - status line is docked to bottom; so it does not stack with status line of local session
 - some widgets are removed from status line: battery, date time. The idea is to economy width, so on wider screens you can open two remote tmux sessions in side-by-side panes of single window of local session.
 
@@ -258,13 +270,17 @@ Use **[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequen
 Second workaround is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168):
 
 - SSH onto target machine with remote tunneling on
+
     ```bash
     ssh -R 2222:localhost:3333  alexeys@192.168.33.100
     ```
+
 - When text is copied inside tmux (by mouse, by keyboard by whatever configured shortcut), pipe text to network socket on remote machine
+
     ```bash
     echo "buffer" | nc localhost 2222
     ```
+
 - Buffer will be sent thru SSH remote tunnel from port `2222` on remote machine to port `3333` on local machine.
 - Setup a service on local machine (systemd service unit with socket activation), which listens on network socket on port `3333`, and pipes any input to `pbcopy` command (or `xsel`, `xclip`).
 
@@ -296,7 +312,6 @@ color_window_off_status_current_bg="colour254"
 ```
 
 Note, that variables are not extracted to dedicated file, as it should be, because for some reasons, tmux does not see variable values after sourcing `theme.conf` file. Don't know why.
-
 
 ## iTerm2 and tmux integration
 
