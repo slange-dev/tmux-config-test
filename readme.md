@@ -67,8 +67,8 @@ On OSX you can install latest 2.6 version with `brew install tmux`. On Linux it'
 
 To install tmux-config:
 ```bash
-$ git clone https://github.com/slange-dev/tmux-config-testings.git
-$ ./tmux-config-testings/install.sh
+git clone https://github.com/slange-dev/tmux-config-testings.git
+./tmux-config-testings/install.sh
 ```
 
 `install.sh` script does following:
@@ -80,14 +80,14 @@ $ ./tmux-config-testings/install.sh
 Finally, you can jump into a new tmux session:
 
 ```bash
-$ tmux new
+tmux new
 ```
 
 Setup tmux with terminator
 --------------------------
 Note: xclip is needed to fix the mouse copy-paste issue.
 ```bash
-$ sudo apt install terminator xclip
+sudo apt install terminator xclip
 ```
 1. Right click on `Terminal Emulator` > `Edit Applicaiton`.
 2. Set `Command` as `terminator`.
@@ -111,12 +111,12 @@ Windows and pane indexing starts from `1` rather than `0`. Scrollback history li
 
 ```bash
 # parent terminal
-$ echo $TERM
+echo $TERM
 xterm-256color
 
 # jump into a tmux session
-$ tmux new
-$ echo $TERM
+tmux new
+echo $TERM
 screen-256color
 ```
 
@@ -464,7 +464,7 @@ For example, when "^⌘↑" pressed, sequence of bytes `0x01 0x1b 0x5b 0x31 0x3b
 You can get binary representation of any keys, using `showkey` or `od` commands
 
 ```bash
-$od -t x1
+od -t x1
 
 ^A^[[1;5A   // press C-a C-↑ on your keyboard
 0000000 01 1b 5b 31 3b 35 41
@@ -472,7 +472,7 @@ $od -t x1
 ```
 
 ```bash
-$ showkey -a
+showkey -a
 Press any keys - Ctrl-D will terminate this program
 
 ^A        1 0001 0x01
