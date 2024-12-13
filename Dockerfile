@@ -13,24 +13,23 @@ LABEL version="0.1"
 
 # Install dependencies and build tmux
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  bc \
-  build-essential \
-  bison \
-  byacc \
-  ca-certificates \
-  fontconfig \
-  git \
-  gcc \
-  iputils-ping \
-  libevent-dev \
-  libncurses-dev \
-  locales \
-  make \
-  pkg-config \
-  procps \
-  wget \
-  vlock \
-  yacc \
+  bc=1.07.1-3+b1 \
+  build-essential=12.9 \
+  bison=2:3.8.2+dfsg-1+b1 \
+  byacc=1:2.0.20221106-1 \
+  ca-certificates=20230311 \
+  fontconfig=2.14.1-4 \
+  git=1:2.39.5-0+deb12u1 \
+  gcc=4:12.2.0-3 \
+  iputils-ping=3:20221126-1+deb12u1 \
+  libevent-dev=2.1.12-stable-8 \
+  libncurses-dev=6.4-4 \
+  locales=2.36-9+deb12u9 \
+  make=4.3-4.1 \
+  pkg-config=1.8.1-1 \
+  procps=2:4.0.2-3 \
+  wget=1.21.3-1+b2 \
+  vlock=2.2.2-11+b1 \
   && wget -O - https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz | tar xzf - \
   && cd tmux-3.5a \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
