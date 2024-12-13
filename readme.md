@@ -42,7 +42,8 @@ local+remote nested session scenario)
 **Integration with 3rd party plugins:**
 
 - [tmux-prefix-highlight](https://github.com/slange-dev/tmux-prefix-highlight)
-- [tmux-split-statusbar](https://github.com/slange-dev/tmux-split-statusbar) (requires tmux version => v3.0)
+- [tmux-split-statusbar](https://github.com/slange-dev/tmux-split-statusbar)
+(requires tmux version => v3.0)
 - [tmux-sidebar](https://github.com/slange-dev/tmux-sidebar)
 - [tmux-plugin-sysstat](https://github.com/slange-dev/tmux-plugin-sysstat)
 - [tmux-ip-address](https://github.com/slange-dev/tmux-ip-address)
@@ -72,7 +73,8 @@ On Linux it's better to install from source,
 because official repositories usually contain outdated version.
 For example, CentOS7 - v1.8 from base repo,
 Ubuntu 14 - v1.8 from trusty/main.
-For how to install from source, see this [gist](https://gist.github.com/P7h/91e14096374075f5316e) or just google it.
+For how to install from source, see this
+[gist](https://gist.github.com/P7h/91e14096374075f5316e) or just google it.
 
 To install tmux-config:
 
@@ -254,7 +256,10 @@ steps need to be done, this works out of the box. However, root keytable
 bindings are still handled by outer session, and cannot be passed to
 inner one.
 
-Second attempt to tackle this issue, is to [setup 2 individual prefixes](https://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/), `C-b` for local session, and `C-a` for remote session. And, you know, it feels like:
+Second attempt to tackle this issue, is to
+[setup 2 individual prefixes](https://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/),
+`C-b` for local session, and `C-a` for remote session.
+And, you know, it feels like:
 
 ![tmux in tmux](http://i.imgur.com/HQBdV1J.jpg)
 
@@ -345,8 +350,13 @@ that you might just decide to give up using it.
 Let's explore possible solutions:
 
 - Share text with OSX clipboard using **"pbcopy"**
-- Share text with OSX clipboard using [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) wrapper to access **"pbcopy"** from tmux environment (seems on OSX 10.11.5 ElCapitan this is not needed, since I can still access **pbcopy** without this wrapper).
-- share text with X selection using **"xclip"** or **"xsel"** (store text in primary and clipboard selections). Works on Linux when `DISPLAY` variable is set.
+- Share text with OSX clipboard using
+[reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+wrapper to access **"pbcopy"** from tmux environment (seems on OSX 10.11.5 ElCapitan
+this is not needed, since I can still access **pbcopy** without this wrapper).
+- share text with X selection using **"xclip"** or **"xsel"**
+(store text in primary and clipboard selections).
+Works on Linux when `DISPLAY` variable is set.
 
 All solutions above are suitable for sharing tmux buffer with system
 clipboard for local machine scenario. They still does not address remote
@@ -356,11 +366,17 @@ system clipboard.
 
 **There are 2 workarounds to address remote scenarios.**
 
-#### First workaround
+### First workaround
 
-Use **[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequences)** escape [sequence](https://blog.vucica.net/2017/07/what-are-osc-terminal-control-sequences-escape-codes.html) to talk to controlling/parent terminal and pass buffer on local machine. Terminal should properly undestand and handle OSC 52. Currently, only iTerm2 and XTerm support it. OSX Terminal, Gnome Terminal, Terminator do not.
+Use
+**[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequences)**
+escape [sequence](https://blog.vucica.net/2017/07/what-are-osc-terminal-control-sequences-escape-codes.html)
+to talk to controlling/parent terminal and pass buffer on local machine.
+Terminal should properly undestand and handle OSC 52. Currently,
+only iTerm2 and XTerm support it.
+OSX Terminal, Gnome Terminal, Terminator do not.
 
-#### Second workaround
+### Second workaround
 
 Is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168):
 
@@ -383,7 +399,9 @@ machine to port `3333` on local machine.
 activation), which listens on network socket on port `3333`, and pipes
 any input to `pbcopy` command (or `xsel`, `xclip`).
 
-This tmux-config does its best to integrate with system clipboard, trying all solutions above in order, and falling back to OSC 52 ANSI escape sequences in case of failure.
+This tmux-config does its best to integrate with system clipboard, trying all
+solutions above in order, and falling back to OSC 52 ANSI escape sequences in case
+of failure.
 
 On OSX you might need to install `reattach-to-user-namespace` wrapper:
 `brew install reattach-to-user-namespace`, and make sure OSC 52 sequence
