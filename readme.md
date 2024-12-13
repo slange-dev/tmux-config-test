@@ -228,7 +228,7 @@ So, how it works. When in outer session, simply press `F12` to toggle off all ke
 
 You might notice that when key bindings are "OFF", special `[OFF]` visual indicator is shown in the status line, and status line changes its style (colored to gray).
 
-###  Local and remote sessions
+### Local and remote sessions
 
 Remote session is detected by existence of `$SSH_CLIENT` variable. When session is remote, following changes are applied:
 
