@@ -483,8 +483,9 @@ Press any keys - Ctrl-D will terminate this program
          65 0101 0x41
 ```
 
-You can remap whatever key in this way, but I do this only for those
-ones, which have similar analogous action in tmux and are most common(resize pane, zoom pane, create new window, etc).
+You can remap whatever key in this way, but I do this only for those ones,
+which have similar analogous action in tmux and are most common
+(resize pane, zoom pane, create new window, etc).
 See table with keybindings above.
 
 As additional step, you can setup this new iTerm profile as default one,
