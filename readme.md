@@ -22,13 +22,13 @@ and builds cozy and cool terminal environment.
 
 ## Features
 
-- "C-a" prefix instead of "C-b" (screen like)
+- `C-a` prefix instead of `C-b` (screen like)
 - support for nested tmux sessions
 - local vs remote specific session configuration
 - scroll and copy mode improvements
 - integration with OSX or Linux clipboard (works for local, remote, and local+remote nested session scenario)
 - supercharged status line
-- renew tmux and shell environment (SSH_AUTH_SOCK, DISPLAY, SSH_TTY) when reattaching back to old session
+- renew tmux and shell environment (`SSH_AUTH_SOCK`, `DISPLAY`, `SSH_TTY`) when reattaching back to old session
 - prompt to rename window right after it's created
 - newly created windows and panes retain current working directory
 - monitor windows for activity/silence
@@ -60,8 +60,8 @@ and builds cozy and cool terminal environment.
 
 **Prerequisites:**
 
-- Tmux >= "v2.4"
-- OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
+- Tmux >= v2.4
+- OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on v11.1)
 
 Personally, I use it on OSX 10.11.5 El Capitan through iTerm2.
 On OSX you can install latest 2.6 version with `brew install tmux`.
@@ -135,7 +135,7 @@ screen-256color
 
 So `~/.tmux.conf` overrides default key bindings for many action, to make them more reasonable, easy to recall and comforable to type.
 
-Let's go through them. 
+Let's go through them.
 
 Key prefix | Description
 --- | ---
@@ -262,21 +262,30 @@ You can also select text using mouse. Default behavior is to copy text and immed
 
 When you copy text inside tmux, it's stored in private tmux buffer, and not shared with system clipboard. Same is true when you SSH onto remote machine, and attach to tmux session there. Copied text will be stored in remote's session buffer, and not shared/transported to your local system clipboard. And sure, if you start local tmux session, then jump into nested remote session, copied text will not land in your system clipboard either.
 
-This is one of the major limitations of tmux, that you might just decide to give up using it. Let's explore possible solutions:
+This is one of the major limitations of tmux, that you might just decide to give up using it.
 
-- share text with OSX clipboard using **"pbcopy"**
-- share text with OSX clipboard using [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) wrapper to access **"pbcopy"** from tmux environment (seems on OSX 10.11.5 ElCapitan this is not needed, since I can still access **pbcopy** without this wrapper).
-- share text with X selection using **"xclip"** or **"xsel"** (store text in primary and clipboard selections). Works on Linux when DISPLAY variable is set.
+Let's explore possible solutions:
+
+- Share text with OSX clipboard using **"pbcopy"**
+- Share text with OSX clipboard using [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) wrapper
+    - To access **"pbcopy"** from tmux environment
+    - Seems on OSX 10.11.5 ElCapitan this is not needed
+    - Since I can still access **pbcopy** without this wrapper).
+- Share text with X selection using **"xclip"** or **"xsel"**
+    - Store text in primary and clipboard selections
+    - Works on Linux when `DISPLAY` variable is set.
 
 All solutions above are suitable for sharing tmux buffer with system clipboard for local machine scenario. They still does not address remote session scenarios. What we need is some way to transport buffer from remote machine to the clipboard on the local machine, bypassing remote system clipboard.
 
 **There are 2 workarounds to address remote scenarios.**
 
-**First workaround**
+#### First workaround
 
 Use **[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequences)** escape [sequence](https://blog.vucica.net/2017/07/what-are-osc-terminal-control-sequences-escape-codes.html) to talk to controlling/parent terminal and pass buffer on local machine. Terminal should properly undestand and handle OSC 52. Currently, only iTerm2 and XTerm support it. OSX Terminal, Gnome Terminal, Terminator do not.
 
-**Second workaround is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168)**:
+#### Second workaround
+
+Is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168):
 
 - SSH onto target machine with remote tunneling on
 
@@ -293,7 +302,7 @@ Use **[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequen
 - Buffer will be sent thru SSH remote tunnel from port `2222` on remote machine to port `3333` on local machine.
 - Setup a service on local machine (systemd service unit with socket activation), which listens on network socket on port `3333`, and pipes any input to `pbcopy` command (or `xsel`, `xclip`).
 
-This tmux-config does its best to integrate with system clipboard, trying all solutions above in order, and falling back to OSC 52 ANSI escape sequences in case of failure. 
+This tmux-config does its best to integrate with system clipboard, trying all solutions above in order, and falling back to OSC 52 ANSI escape sequences in case of failure.
 
 On OSX you might need to install `reattach-to-user-namespace` wrapper: `brew install reattach-to-user-namespace`, and make sure OSC 52 sequence handling is turned on in iTerm. (Preferences -> General -> Applications in Terminal may access clipboard).
 
