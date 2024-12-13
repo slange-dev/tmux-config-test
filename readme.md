@@ -55,9 +55,7 @@ and builds cozy and cool terminal environment.
 Prerequisites:
 
 - Tmux >= "v2.4"
-- OSX
-- Linux (tested on Ubuntu 14 and CentOS7)
-- FreeBSD (tested on 11.1)
+- OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
 
 Personally, I use it on OSX 10.11.5 El Capitan through iTerm2.
 On OSX you can install latest 2.6 version with `brew install tmux`.
@@ -66,7 +64,6 @@ because official repositories usually contain outdated version.
 For example, CentOS7 - v1.8 from base repo,
 Ubuntu 14 - v1.8 from trusty/main.
 For how to install from source, see this [gist](https://gist.github.com/P7h/91e14096374075f5316e) or just google it.
-
 
 To install tmux-config:
 
@@ -134,6 +131,12 @@ screen-256color
 So `~/.tmux.conf` overrides default key bindings for many action, to make them more reasonable, easy to recall and comforable to type.
 
 Let's go through them. 
+
+Key prefix | Description
+--- | ---
+C- or ^ | CTRL key prefixed with ```C-``` or ```^```
+S- | SHIFT key prefixed with ```S-```
+M- | ALT (Meta) key prefixed with ```M-```
 
 If you are an iTerm2 user, third column describes the keybinding of similar  "action" in iTerm2. It's possible to reuse very same keys you already get used to and tell iTerm2 to execute analogous tmux actions. See [iTerm2 and tmux integration](#iterm2-and-tmux-integration) section below.
 
