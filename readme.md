@@ -35,11 +35,17 @@ and builds cozy and cool terminal environment.
 - highlight focused pane
 - merge current session with existing one (move all windows)
 - configurable visual theme/colors, with some elements borrowed from [Powerline](https://github.com/powerline/powerline)
-- integration with 3rd party plugins:
-- [tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar)
-- [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat)
 
-**Status line widgets**:
+**Integration with 3rd party plugins:**
+
+- [tmux-prefix-highlight](https://github.com/slange-dev/tmux-prefix-highlight)
+- [tmux-split-statusbar](https://github.com/slange-dev/tmux-split-statusbar) (requires tmux version => v3.0)
+- [tmux-sidebar](https://github.com/slange-dev/tmux-sidebar)
+- [tmux-plugin-sysstat](https://github.com/slange-dev/tmux-plugin-sysstat)
+- [tmux-ip-address](https://github.com/slange-dev/tmux-ip-address)
+- etc.
+
+**Status line widgets:**
 
 - CPU, memory usage, system load average metrics
 - username and hostname, current date time
@@ -52,14 +58,14 @@ and builds cozy and cool terminal environment.
 
 ## Installation
 
-Prerequisites:
+**Prerequisites:**
 
 - Tmux >= "v2.4"
 - OSX, Linux (tested on Ubuntu 14 and CentOS7), FreeBSD (tested on 11.1)
 
 Personally, I use it on OSX 10.11.5 El Capitan through iTerm2.
 On OSX you can install latest 2.6 version with `brew install tmux`.
-On Linux it's better to install from source, 
+On Linux it's better to install from source,
 because official repositories usually contain outdated version.
 For example, CentOS7 - v1.8 from base repo,
 Ubuntu 14 - v1.8 from trusty/main.
@@ -87,7 +93,7 @@ tmux new
 
 ## Setup tmux with terminator
 
-Note: xclip is needed to fix the mouse copy-paste issue.
+**Note:** xclip is needed to fix the mouse copy-paste issue.
 
 ```bash
 sudo apt install terminator xclip
@@ -114,7 +120,6 @@ Windows and pane indexing starts from `1` rather than `0`. Scrollback history li
 
 256 color palette support is turned on, make sure that your parent terminal is configured propertly. See [here](https://unix.stackexchange.com/questions/1045/getting-256-colors-to-work-in-tmux) and [there](https://github.com/tmux/tmux/wiki/FAQ)
 
-
 ```bash
 # parent terminal
 echo $TERM
@@ -134,9 +139,9 @@ Let's go through them.
 
 Key prefix | Description
 --- | ---
-C- or ^ | CTRL key prefixed with ```C-``` or ```^```
-S- | SHIFT key prefixed with ```S-```
-M- | ALT (Meta) key prefixed with ```M-```
+C- or ^ | CTRL key prefixed with `C-` or `^`
+S- | SHIFT key prefixed with `S-`
+M- | ALT (Meta) key prefixed with `M-`
 
 If you are an iTerm2 user, third column describes the keybinding of similar  "action" in iTerm2. It's possible to reuse very same keys you already get used to and tell iTerm2 to execute analogous tmux actions. See [iTerm2 and tmux integration](#iterm2-and-tmux-integration) section below.
 
@@ -196,15 +201,14 @@ Window tabs use Powerline arrows glyphs, so you need to install Powerline enable
 
 The right part of status line consists of following components:
 
-- CPU, memory usage, system load average metrics. Powered by [tmux-plugin-sysstat](https://github.com/samoshkin/tmux-plugin-sysstat) (dislaimed, that's my own development, because I haven't managed to find any good plugin with CPU and memory/swap metrics)
+- CPU, memory usage, system load average metrics. Powered by [tmux-plugin-sysstat](https://github.com/slange-dev/tmux-plugin-sysstat) (dislaimed, that's my own development, because I haven't managed to find any good plugin with CPU and memory/swap metrics)
 - username and hostname (invaluable when you SSH onto remote host)
 - current date time
 - battery information
 - visual indicator when you press prefix key: `[^A]`.
 - visual indicator when pane is zoomed: `[Z]`
-- online/offline visual indicator (just pings `google.com`)
 
-You might want to hide status bar using `<prefix> C-s` keybinding.
+You might want to hide status bar using `PREFIX + C-s` keybinding.
 
 ## Nested tmux sessions
 
@@ -261,16 +265,18 @@ When you copy text inside tmux, it's stored in private tmux buffer, and not shar
 This is one of the major limitations of tmux, that you might just decide to give up using it. Let's explore possible solutions:
 
 - share text with OSX clipboard using **"pbcopy"**
-- share text with OSX clipboard using [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) wrapper to access "pbcopy" from tmux environment (seems on OSX 10.11.5 ElCapitan this is not needed, since I can still access pbcopy without this wrapper).
+- share text with OSX clipboard using [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) wrapper to access **"pbcopy"** from tmux environment (seems on OSX 10.11.5 ElCapitan this is not needed, since I can still access **pbcopy** without this wrapper).
 - share text with X selection using **"xclip"** or **"xsel"** (store text in primary and clipboard selections). Works on Linux when DISPLAY variable is set.
 
 All solutions above are suitable for sharing tmux buffer with system clipboard for local machine scenario. They still does not address remote session scenarios. What we need is some way to transport buffer from remote machine to the clipboard on the local machine, bypassing remote system clipboard.
 
-There are 2 workarounds to address remote scenarios.
+**There are 2 workarounds to address remote scenarios.**
+
+**First workaround**
 
 Use **[ANSI OSC 52](https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequences)** escape [sequence](https://blog.vucica.net/2017/07/what-are-osc-terminal-control-sequences-escape-codes.html) to talk to controlling/parent terminal and pass buffer on local machine. Terminal should properly undestand and handle OSC 52. Currently, only iTerm2 and XTerm support it. OSX Terminal, Gnome Terminal, Terminator do not.
 
-Second workaround is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168):
+**Second workaround is really involved and consists of [local network listener and SSH remote tunneling](https://apple.stackexchange.com/a/258168)**:
 
 - SSH onto target machine with remote tunneling on
 
@@ -314,7 +320,7 @@ color_window_off_status_bg="colour238"
 color_window_off_status_current_bg="colour254"
 ```
 
-Note, that variables are not extracted to dedicated file, as it should be, because for some reasons, tmux does not see variable values after sourcing `theme.conf` file. Don't know why.
+**Note:** that variables are not extracted to dedicated file, as it should be, because for some reasons, tmux does not see variable values after sourcing `theme.conf` file. Don't know why.
 
 ## iTerm2 and tmux integration
 
