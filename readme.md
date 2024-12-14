@@ -54,10 +54,9 @@ local+remote nested session scenario)
 - CPU, memory usage, system load average metrics
 - username and hostname, current date time
 - battery information in status line
-- visual indicator when you press `prefix`
-- visual indicator when you're in `Copy` mode
-- visual indicator when pane is zoomed
-- online/offline visual indicator
+- visual indicator `[^A]` when you press the `Prefix`
+- visual indicator `[Copy]` when you're in `Copy` mode
+- visual indicator `[Zoomed]` when pane is zoomed
 - toggle visibility of status line
 
 ## Installation
