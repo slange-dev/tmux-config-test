@@ -11,6 +11,9 @@ LABEL maintainer="slange-dev" \
 # Version
 LABEL version="0.1"
 
+# Set workdir
+WORKDIR /root
+
 # Install dependencies and build tmux
 RUN apt-get update && apt-get install -y --no-install-recommends \
   bc=1.07.1-3+b1 \
@@ -54,13 +57,10 @@ ENV LANG=en_US.UTF-8
 # Set user env to root
 ENV USER=root
 
-# Set term env to *-256 colors
+# Set term env to xterm-256 colors
 ENV TERM=xterm-256color
 
-# Set workdir
-WORKDIR /root
-
-# Set shell to bash
+# Set shell to bash with -c
 SHELL ["/bin/bash", "-c"]
 
 # Install Powerline symbols and fonts
@@ -70,13 +70,16 @@ RUN wget -P /usr/local/share/fonts/powerline https://github.com/powerline/powerl
   && fc-cache -vf /usr/local/share/fonts/powerline
 
 # Install tmux config files from tmux testing repository
-RUN mkdir -p ~/tmux-config-testings \
-  && git clone https://github.com/slange-dev/tmux-config-testings ~/tmux-config-testings \
-  && chmod +x ~/tmux-config-testings/install.sh \
-  && source ~/tmux-config-testings/install.sh
+RUN mkdir -p tmux-config-testings \
+  && git clone https://github.com/slange-dev/tmux-config-testings tmux-config-testings \
+  && chmod +x tmux-config-testings/install.sh \
+  && source tmux-config-testings/install.sh
 
 # Copy tmux start script
 COPY run_tmux.sh run_tmux.sh
+
+# Set shell env to bash
+ENV SHELL=/bin/bash
 
 # Run tmux
 ENTRYPOINT ["/bin/bash", "run_tmux.sh"]
