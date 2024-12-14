@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   procps=2:4.0.2-3 \
   wget=1.21.3-1+b2 \
   vlock=2.2.2-11+b1 \
+  xclip=0.13-2 \
+  xsel=1.2.0+git9bfc13d.20180109-4 \
   && wget -O - https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz | tar xzf - \
   && cd tmux-3.5a \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
