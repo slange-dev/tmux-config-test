@@ -2,7 +2,7 @@
 ##################################################################################
 # @Version       :
 # @Author        : Sebastian Lange
-# @Contact       : 
+# @Contact       : slange-dev@
 # @License       :
 # @ReadME        :
 # @Copyright     : Copyright: (c) 2022 Sebastian Lange, Home Developments
@@ -14,14 +14,24 @@
 # @Resource      : https://medium.com/hackernoon/tmux-in-practice-copy-text-from-remote-session-using-ssh-remote-tunnel-and-systemd-service-dd3c51bca1fa
 ##################################################################################
 
-#
-#-e     When this option is on, if a simple command fails for any of the reasons listed in Consequences of
-#       Shell  Errors or returns an exit status value >0, and is not part of the compound list following a
-#       while, until, or if keyword, and is not a part of an AND  or  OR  list,  and  is  not  a  pipeline
-#       preceded by the ! reserved word, then the shell shall immediately exit.
-#
-#-u     The shell shall write a message to standard error when it tries to expand a variable that  is  not
-#       set and immediately exit. An interactive shell shall not exit.
+#####################################################################################################################################
+# xterm supports OSC 52.                                                                                                            #
+# VTE terminals (GNOME terminal, XFCE terminal, Terminator) do not support the OSC 52 escape sequence.                              #
+# Kitty does support OSC 52, but it has a bug where it appends to the clipboard each time text is copied rather than replacing it.  #
+# rxvt-unicode does not support OSC 52 natively.                                                                                    #
+# iTerm2 supports OSC 52 but it has be enabled in the iTerm2 preferences.                                                           #
+#####################################################################################################################################
+
+#############################################################################################################
+# -e   When this option is on, if a simple command fails for any of the reasons listed in Consequences of   #
+#      Shell Errors or returns an exit status value >0, and is not part of the compound list following a    #
+#      while, until, or if keyword, and is not a part of an AND or OR list, and is not a pipeline           #
+#      preceded by the ! reserved word, then the shell shall immediately exit.                              #
+#                                                                                                           #
+# -u   The shell shall write a message to standard error when it tries to expand a variable that is not     #
+#      set and immediately exit.                                                                            #
+#      An interactive shell shall not exit.                                                                 #
+#############################################################################################################
 set -eu
 
 # Function to check if a app is installed
@@ -38,7 +48,9 @@ copy_backend_remote_tunnel_port=$(tmux show-option -gvq "@copy_backend_remote_tu
 # OSC52 fallback option
 copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
 
-# Resolve copy backend for:
+######################
+# supported backends #
+######################
 # pbcopy (OSX)
 # reattach-to-user-namespace (OSX)
 # xsel (Linux)
@@ -55,8 +67,9 @@ if is_app_installed pbcopy; then
 elif is_app_installed reattach-to-user-namespace; then
   copy_backend="reattach-to-user-namespace pbcopy"
 # xsel clipboard command
-elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
-  copy_backend="xsel -i --clipboard"
+# failure --clipboard: No such file or directory
+#elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
+#  copy_backend="xsel -i --primary | xsel -i --clipboard &> /dev/null"
 # xclip clipboard command
 elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
   copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard &> /dev/null"
