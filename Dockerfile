@@ -1,5 +1,5 @@
 # Set the base image to Debian 12 slim
-FROM debian:12-slim
+FROM debian:stable-slim
 
 # Maintainer
 LABEL maintainer="slange-dev" \
@@ -13,6 +13,15 @@ LABEL version="0.1"
 
 # Set workdir
 WORKDIR /root
+
+# Set shell to bash with -c
+SHELL ["/bin/bash", "-c"]
+
+# Set timezone
+ENV TZ="Europe/Berlin"
+
+# Prevent package installation prompts
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies and build tmux
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -29,6 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libncurses-dev=6.4-4 \
   locales=2.36-9+deb12u9 \
   make=4.3-4.1 \
+  netcat-traditional=1.10-47 \
   pkg-config=1.8.1-1 \
   procps=2:4.0.2-3 \
   wget=1.21.3-1+b2 \
@@ -56,15 +66,6 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
-# Set user env to root
-ENV USER=root
-
-# Set term env to xterm-256 colors
-ENV TERM=xterm-256color
-
-# Set shell to bash with -c
-SHELL ["/bin/bash", "-c"]
-
 # Install Powerline symbols and fonts
 RUN wget -P /usr/local/share/fonts/powerline https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
   && wget -P /usr/share/fontconfig/conf.avail https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
@@ -80,8 +81,14 @@ RUN mkdir -p tmux-config-testings \
 # Copy tmux start script
 COPY run_tmux.sh run_tmux.sh
 
+# Set term env to xterm-256 colors
+ENV TERM=xterm-256color
+
 # Set shell env to bash
 ENV SHELL=/bin/bash
 
-# Run tmux
+# Set user env to root
+ENV USER=root
+
+# Run tmux start script
 ENTRYPOINT ["/bin/bash", "run_tmux.sh"]
