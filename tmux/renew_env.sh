@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 ##################################################################################
-# @Version       : 
+# @Version       :
 # @Author        : Sebastian Lange
 # @Contact       : slange-dev@
-# @License       : 
-# @ReadME        : 
+# @License       :
+# @ReadME        :
 # @Copyright     : Copyright: (c) 2022 Sebastian Lange, Home Developments
-# @Created       : 
-# @File          : 
-# @Description   : 
+# @Created       :
+# @File          :
+# @Description   :
 # @TODO          :
 # @Other         :
 # @Resource      :
