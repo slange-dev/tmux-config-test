@@ -43,7 +43,7 @@ local+remote nested session scenario)
 
 - [tmux-prefix-highlight](https://github.com/slange-dev/tmux-prefix-highlight)
 - [tmux-split-statusbar](https://github.com/slange-dev/tmux-split-statusbar)
-(requires tmux version => v3.0)
+(requires Tmux => v3.0)
 - [tmux-sidebar](https://github.com/slange-dev/tmux-sidebar)
 - [tmux-plugin-sysstat](https://github.com/slange-dev/tmux-plugin-sysstat)
 - [tmux-ip-address](https://github.com/slange-dev/tmux-ip-address)
