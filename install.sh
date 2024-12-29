@@ -42,12 +42,12 @@ fi
 
 # Copy tmux configuration files from the current directory to ~/.tmux/
 echo -e "Copying tmux configuration files to ~/.tmux/\n"
-cp -f "$HOME/tmux-config-testings/tmux/.tmux.template.conf" "$HOME/.tmux/.tmux.template.conf"
-cp -f "$HOME/tmux-config-testings/tmux/tmux.conf" "$HOME/.tmux/tmux.conf"
-cp -f "$HOME/tmux-config-testings/tmux/tmux.remote.conf" "$HOME/.tmux/tmux.remote.conf"
-cp -f "$HOME/tmux-config-testings/tmux/yank.sh" "$HOME/.tmux/yank.sh"
-cp -f "$HOME/tmux-config-testings/tmux/renew_env.sh" "$HOME/.tmux/renew_env.sh"
-cp -f "$HOME/tmux-config-testings/tmux/tmux-update-display.sh" "$HOME/.tmux/tmux-update-display.sh"
+cp -f "$HOME/tmux-config-test/tmux/.tmux.template.conf" "$HOME/.tmux/.tmux.template.conf"
+cp -f "$HOME/tmux-config-test/tmux/tmux.conf" "$HOME/.tmux/tmux.conf"
+cp -f "$HOME/tmux-config-test/tmux/tmux.remote.conf" "$HOME/.tmux/tmux.remote.conf"
+cp -f "$HOME/tmux-config-test/tmux/yank.sh" "$HOME/.tmux/yank.sh"
+cp -f "$HOME/tmux-config-test/tmux/renew_env.sh" "$HOME/.tmux/renew_env.sh"
+cp -f "$HOME/tmux-config-test/tmux/tmux-update-display.sh" "$HOME/.tmux/tmux-update-display.sh"
 
 # Symlink tmux config files
 echo -e "Creating symlinks for tmux config files\n"
