@@ -4,8 +4,8 @@ FROM debian:stable-slim
 # Maintainer
 LABEL maintainer="slange-dev" \
   org.opencontainers.image.authors="slange-dev" \
-  org.opencontainers.image.title="tmux-config-test" \
-  org.opencontainers.image.description="Tmux config test" \
+  org.opencontainers.image.title="tmux-config-test-v3.5a" \
+  org.opencontainers.image.description="Tmux config test v3.5a" \
   org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-test"
 
 # Version
