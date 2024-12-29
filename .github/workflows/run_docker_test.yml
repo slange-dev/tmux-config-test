@@ -71,3 +71,57 @@ jobs:
             uses: actions/checkout@main
           - name: Run the build process - v3.2
             run: docker build . --file Dockerfile-v3.2 --tag tmux-config-test-v3.2:$(date +%s)
+
+    compile_tmux_v31c:
+        name: Compile tmux v3.1c
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.1c
+            uses: actions/checkout@main
+          - name: Run the build process - v3.1c
+            run: docker build . --file Dockerfile-v3.1c --tag tmux-config-test-v3.1c:$(date +%s)
+
+    compile_tmux_v31b:
+        name: Compile tmux v3.1b
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.1b
+            uses: actions/checkout@main
+          - name: Run the build process - v3.1b
+            run: docker build . --file Dockerfile-v3.1b --tag tmux-config-test-v3.1b:$(date +%s)
+
+    compile_tmux_v31a:
+        name: Compile tmux v3.1a
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.1a
+            uses: actions/checkout@main
+          - name: Run the build process - v3.1a
+            run: docker build . --file Dockerfile-v3.1a --tag tmux-config-test-v3.1a:$(date +%s)
+
+    compile_tmux_v31:
+        name: Compile tmux v3.1
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.1
+            uses: actions/checkout@main
+          - name: Run the build process - v3.1
+            run: docker build . --file Dockerfile-v3.1 --tag tmux-config-test-v3.1:$(date +%s)
+
+    compile_tmux_v30a:
+        name: Compile tmux v3.0a
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.0a
+            uses: actions/checkout@main
+          - name: Run the build process - v3.0a
+            run: docker build . --file Dockerfile-v3.0a --tag tmux-config-test-v3.0a:$(date +%s)
+
+    compile_tmux_v30:
+        name: Compile tmux v3.0
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.0
+            uses: actions/checkout@main
+          - name: Run the build process - v3.0
+            run: docker build . --file Dockerfile-v3.0 --tag tmux-config-test-v3.0:$(date +%s)
