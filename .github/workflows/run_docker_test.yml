@@ -35,3 +35,39 @@ jobs:
             uses: actions/checkout@main
           - name: Run the build process - v3.4
             run: docker build . --file Dockerfile-v3.4 --tag tmux-config-test-v3.4:$(date +%s)
+
+    compile_tmux_v33a:
+        name: Compile tmux v3.3a
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.3a
+            uses: actions/checkout@main
+          - name: Run the build process - v3.3a
+            run: docker build . --file Dockerfile-v3.3a --tag tmux-config-test-v3.3a:$(date +%s)
+
+    compile_tmux_v33:
+        name: Compile tmux v3.3
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.3
+            uses: actions/checkout@main
+          - name: Run the build process - v3.3
+            run: docker build . --file Dockerfile-v3.3 --tag tmux-config-test-v3.3:$(date +%s)
+
+    compile_tmux_v32a:
+        name: Compile tmux v3.2a
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.2a
+            uses: actions/checkout@main
+          - name: Run the build process - v3.2a
+            run: docker build . --file Dockerfile-v3.2a --tag tmux-config-test-v3.2a:$(date +%s)
+
+    compile_tmux_v32:
+        name: Compile tmux v3.2
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.2
+            uses: actions/checkout@main
+          - name: Run the build process - v3.2
+            run: docker build . --file Dockerfile-v3.2 --tag tmux-config-test-v3.2:$(date +%s)
