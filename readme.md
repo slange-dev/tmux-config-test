@@ -1,6 +1,6 @@
 # Tmux Configuration
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-testings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-test/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Tmux configuration, that supercharges your [tmux](https://tmux.github.io/)
 and builds cozy and cool terminal environment.
@@ -78,8 +78,8 @@ For how to install from source, see this
 To install tmux-config:
 
 ```bash
-git clone https://github.com/slange-dev/tmux-config-testings.git
-./tmux-config-testings/install.sh
+git clone https://github.com/slange-dev/tmux-config-test.git
+./tmux-config-test/install.sh
 ```
 
 `install.sh` script does following:
