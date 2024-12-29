@@ -26,3 +26,12 @@ jobs:
             uses: actions/checkout@main
           - name: Run the build process - v3.5
             run: docker build . --file Dockerfile-v3.5 --tag tmux-config-test-v3.5:$(date +%s)
+
+    compile_tmux_v34:
+        name: Compile tmux v3.4
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.4
+            uses: actions/checkout@main
+          - name: Run the build process - v3.4
+            run: docker build . --file Dockerfile-v3.4 --tag tmux-config-test-v3.4:$(date +%s)
