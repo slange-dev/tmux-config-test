@@ -16,4 +16,4 @@ jobs:
           - name: Check out the repository
             uses: actions/checkout@main
           - name: Run the build process
-            run: docker build . --file Dockerfile --tag tmux-config-testing:$(date +%s)
+            run: docker build . --file Dockerfile --tag tmux-config-test:$(date +%s)
