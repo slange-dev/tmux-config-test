@@ -1,4 +1,4 @@
-# Tmux Configuration
+# Tmux Configuration Test
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/eba488a716014cbc96ddd88b0d6eae07)](https://app.codacy.com/gh/slange-dev/tmux-config-test/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
