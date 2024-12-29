@@ -9,7 +9,7 @@ LABEL maintainer="slange-dev" \
   org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-test"
 
 # Version
-LABEL version="0.1"
+LABEL version="3.5a"
 
 # Set workdir
 WORKDIR /root

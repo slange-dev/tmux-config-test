@@ -9,11 +9,20 @@ on:
     - cron: '36 22 * * 2'
 
 jobs:
-    compile:
-        name: Compile tmux
+    compile_tmux_v35a:
+        name: Compile tmux v3.5a
         runs-on: ubuntu-latest
         steps:
-          - name: Check out the repository
+          - name: Check out the repository - v3.5a
             uses: actions/checkout@main
-          - name: Run the build process
-            run: docker build . --file Dockerfile --tag tmux-config-test:$(date +%s)
+          - name: Run the build process - v3.5a
+            run: docker build . --file Dockerfile-v3.5a --tag tmux-config-test-v3.5a:$(date +%s)
+
+    compile_tmux_v35:
+        name: Compile tmux v3.5
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v3.5
+            uses: actions/checkout@main
+          - name: Run the build process - v3.5
+            run: docker build . --file Dockerfile-v3.5 --tag tmux-config-test-v3.5:$(date +%s)
