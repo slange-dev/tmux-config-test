@@ -4,9 +4,9 @@ FROM debian:stable-slim
 # Maintainer
 LABEL maintainer="slange-dev" \
   org.opencontainers.image.authors="slange-dev" \
-  org.opencontainers.image.title="tmux-config-testings" \
-  org.opencontainers.image.description="Tmux config testings" \
-  org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-testings"
+  org.opencontainers.image.title="tmux-config-test" \
+  org.opencontainers.image.description="Tmux config test" \
+  org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-test"
 
 # Version
 LABEL version="0.1"
@@ -73,10 +73,10 @@ RUN wget -P /usr/local/share/fonts/powerline https://github.com/powerline/powerl
   && fc-cache -vf /usr/local/share/fonts/powerline
 
 # Install tmux config files from tmux testing repository
-RUN mkdir -p tmux-config-testings \
-  && git clone https://github.com/slange-dev/tmux-config-testings tmux-config-testings \
-  && chmod +x tmux-config-testings/install.sh \
-  && source tmux-config-testings/install.sh
+RUN mkdir -p tmux-config-test \
+  && git clone https://github.com/slange-dev/tmux-config-test tmux-config-test \
+  && chmod +x tmux-config-test/install.sh \
+  && source tmux-config-test/install.sh
 
 # Copy tmux start script
 COPY run_tmux.sh run_tmux.sh
