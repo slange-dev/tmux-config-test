@@ -125,3 +125,66 @@ jobs:
             uses: actions/checkout@main
           - name: Run the build process - v3.0
             run: docker build . --file Dockerfile-v3.0 --tag tmux-config-test-v3.0:$(date +%s)
+
+    compile_tmux_v29a:
+        name: Compile tmux v2.9a
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.9a
+            uses: actions/checkout@main
+          - name: Run the build process - v2.9a
+            run: docker build . --file Dockerfile-v2.9a --tag tmux-config-test-v2.9a:$(date +%s)
+
+    compile_tmux_v29:
+        name: Compile tmux v2.9
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.9
+            uses: actions/checkout@main
+          - name: Run the build process - v2.9
+            run: docker build . --file Dockerfile-v2.9 --tag tmux-config-test-v2.9:$(date +%s)
+
+    compile_tmux_v28:
+        name: Compile tmux v2.8
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.8
+            uses: actions/checkout@main
+          - name: Run the build process - v2.8
+            run: docker build . --file Dockerfile-v2.8 --tag tmux-config-test-v2.8:$(date +%s)
+
+    compile_tmux_v27:
+        name: Compile tmux v2.7
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.7
+            uses: actions/checkout@main
+          - name: Run the build process - v2.7
+            run: docker build . --file Dockerfile-v2.7 --tag tmux-config-test-v2.7:$(date +%s)
+
+    compile_tmux_v26:
+        name: Compile tmux v2.6
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.6
+            uses: actions/checkout@main
+          - name: Run the build process - v2.6
+            run: docker build . --file Dockerfile-v2.6 --tag tmux-config-test-v2.6:$(date +%s)
+
+    compile_tmux_v25:
+        name: Compile tmux v2.5
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.5
+            uses: actions/checkout@main
+          - name: Run the build process - v2.5
+            run: docker build . --file Dockerfile-v2.5 --tag tmux-config-test-v2.5:$(date +%s)
+
+    compile_tmux_v24:
+        name: Compile tmux v2.4
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repository - v2.4
+            uses: actions/checkout@main
+          - name: Run the build process - v2.4
+            run: docker build . --file Dockerfile-v2.4 --tag tmux-config-test-v2.4:$(date +%s)
