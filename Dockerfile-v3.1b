@@ -44,8 +44,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   wget=1.21.3-1+b2 \
   vlock=2.2.2-11+b1 \
   xclip=0.13-2 \
-  xsel=1.2.0+git9bfc13d.20180109-4 \
-  && wget -O - https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz | tar xzf - \
+  xsel=1.2.0+git9bfc13d.20180109-4
+
+  # Install tmux
+  RUN wget -O - https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz | tar xzf - \
   && cd tmux-3.1b \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
   && make \
