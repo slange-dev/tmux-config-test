@@ -1,0 +1,144 @@
+# Set the base image to Debian 12 slim
+FROM debian:stable-slim
+
+# Maintainer
+LABEL maintainer="slange-dev" \
+  org.opencontainers.image.authors="slange-dev" \
+  org.opencontainers.image.title="tmux-config-test-v3.6a" \
+  org.opencontainers.image.description="Tmux config test v3.6a" \
+  org.opencontainers.image.source="https://github.com/slange-dev/tmux-config-test"
+
+# Set tmux version
+ARG TMUX_VERSION="3.6a"
+
+# Set workdir
+WORKDIR /root
+
+# Set shell to bash with -c
+SHELL ["/bin/bash", "-c"]
+
+# Set timezone
+ENV TZ="Europe/Berlin"
+
+# Prevent package installation prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies and build tmux
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  bc \
+  build-essential \
+  bison \
+  byacc \
+  ca-certificates \
+  fontconfig \
+  git \
+  gcc \
+  iputils-ping \
+  libevent-dev \
+  libncurses-dev \
+  locales \
+  make \
+  netcat-traditional \
+  pkg-config \
+  procps \
+  wget \
+  vlock \
+  xclip \
+  xsel
+
+# Install tmux
+RUN wget -O - "https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz" | tar xzf - \
+  && cd "tmux-${TMUX_VERSION}" \
+  && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
+  && make \
+  && make install \
+  && cd .. \
+  && rm -rf "tmux-${TMUX_VERSION}" \
+  && apt-get purge -y gcc make \
+  && apt-get autoremove -y \
+  && apt-get clean -y \
+  && apt-get autoclean -y \
+  && rm -rf /var/lib/apt/lists/*
+
+# Set language
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+  && locale-gen
+
+# Set language env
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+
+# Install Powerline symbols and fonts
+RUN wget -P /usr/local/share/fonts/powerline https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
+  && wget -P /usr/share/fontconfig/conf.avail https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
+  && ln -s /usr/share/fontconfig/conf.avail/10-powerline-symbols.conf /etc/fonts/conf.d/10-powerline-symbols.conf \
+  && fc-cache -vf /usr/local/share/fonts/powerline
+
+# Configure SSH
+# Add test user
+#RUN useradd -m -s /bin/bash tester
+
+# Set password for root
+RUN echo "root:root" | chpasswd
+# Set password for tester
+#RUN echo "tester:test" | chpasswd
+
+# Install ssh server
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  openssh-server
+
+# Create SSH directory
+RUN mkdir -p /root/.ssh
+
+# Copy the authorized_keys file
+#COPY keys/authorized_keys /root/.ssh/authorized_keys
+#RUN chmod 600 /root/.ssh/authorized_keys
+
+# Set permissions
+RUN chmod 700 /root/.ssh
+
+#RUN mkdir -p /home/tester/.ssh
+#RUN chmod 700 /home/tester/.ssh
+
+#
+RUN mkdir -p /var/run/sshd
+
+# Allow root login
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Disable password authentication
+RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+
+#
+#RUN sed /^StrictHostKeyChecking/d /etc/ssh/ssh_config; \
+#  echo StrictHostKeyChecking no >> /etc/ssh/ssh_config
+
+# Login fix for the SSH daemon to prevent possible issues with systemd
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+# Start SSH service
+RUN service ssh start
+
+# Install tmux config files from tmux testing repository
+RUN mkdir -p tmux-config-test \
+  && git clone https://github.com/slange-dev/tmux-config-test tmux-config-test \
+  && chmod +x tmux-config-test/install.sh \
+  && source tmux-config-test/install.sh
+
+# Copy tmux start script
+COPY run_tmux.sh run_tmux.sh
+
+# Set term env to xterm-256 colors
+ENV TERM=xterm-256color
+
+# Set shell env to bash
+ENV SHELL=/bin/bash
+
+# Set user env to root
+ENV USER=root
+
+# Open SSH port
+EXPOSE 22/tcp
+
+# Run tmux start script
+ENTRYPOINT ["/bin/bash", "run_tmux.sh"]
